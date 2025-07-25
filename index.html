@@ -2,129 +2,233 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Pomodoro Timer</title>
+  <title>Chúc Mừng Sinh Nhật!</title>
   <style>
-    body {
-      background-image: url('https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/520262592_122140360688771341_7341266968348833978_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF4NKsHEvQr3kGxZQs-bHlC4N8lGFYLo8ng3yUYVgujyaWMcl9aDewFEHebcocvj3xXsgiyRFnSjnFvVyYKQ9Xy&_nc_ohc=qgHOqcJjlCUQ7kNvwHv9Kfr&_nc_oc=AdlasptwgZrFDUuvrEoSgtDgQnLaAkOWdN1AdEfs5S6tpdPV6f4iXfSK6BZSEDJYimU&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=1bhrAWtf_WqTmDpRxeH47A&oh=00_AfTU9IDz1-yZYvNdbBWop7DT1ujH-V8gCtbksWoMnTTPtw&oe=6888E8CF');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      font-family: Arial, sans-serif;
+   html, body {
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a url('https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/520262592_122140360688771341_7341266968348833978_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF4NKsHEvQr3kGxZQs-bHlC4N8lGFYLo8ng3yUYVgujyaWMcl9aDewFEHebcocvj3xXsgiyRFnSjnFvVyYKQ9Xy&_nc_ohc=qgHOqcJjlCUQ7kNvwHv9Kfr&_nc_oc=AdlasptwgZrFDUuvrEoSgtDgQnLaAkOWdN1AdEfs5S6tpdPV6f4iXfSK6BZSEDJYimU&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=1bhrAWtf_WqTmDpRxeH47A&oh=00_AfTU9IDz1-yZYvNdbBWop7DT1ujH-V8gCtbksWoMnTTPtw&oe=6888E8CF') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       text-align: center;
-      padding: 16px;
-      color: #fff;
-      margin: 0;
+      z-index: 10;
+      position: relative;
+      padding: 20px;
     }
 
     h1 {
-      font-size: 20px;
-      margin: 10px 0;
+      font-size: 3em;
+      color: #FFD700;
+      animation: glow 1.5s infinite alternate;
+      margin-bottom: 20px;
     }
 
-    #timer {
-      font-size: 40px;
-      margin: 20px 0;
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFA500;
+      }
+      to {
+        text-shadow: 0 0 20px #FFD700, 0 0 30px #FF4500;
+      }
     }
 
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 5px;
-      border: none;
-      border-radius: 5px;
-      background-color: #2E4C3A;
-      color: white;
-      cursor: pointer;
+    .cake {
+      position: relative;
+      margin: 20px auto;
+      width: 220px;
+      height: auto;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .layer {
+      width: 100%;
+      margin: 0 auto;
+      background: pink;
+      border: 4px solid #fff;
+      box-shadow: 0 5px 10px rgba(255, 105, 180, 0.5);
+      border-radius: 10px;
+    }
+
+    .layer1 { height: 60px; width: 220px; background: #ffc0cb; }
+    .layer2 { height: 50px; width: 180px; background: #ffb6c1; margin-top: -10px; }
+    .layer3 { height: 40px; width: 140px; background: #ff99cc; margin-top: -10px; }
+
+    .candle {
+      width: 10px;
+      height: 40px;
+      background: white;
+      position: absolute;
+      top: -60px;
+      left: calc(50% - 5px);
+      border-radius: 3px;
+      box-shadow: 0 0 5px #fff;
+    }
+
+    .flame {
+      width: 10px;
+      height: 15px;
+      background: orange;
+      border-radius: 50% 50% 20% 20%;
+      position: absolute;
+      top: -15px;
+      left: 0;
+      animation: flicker 0.3s infinite alternate;
+      box-shadow: 0 0 10px #FF4500, 0 0 20px #FFD700;
+    }
+
+    @keyframes flicker {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+      100% { transform: scale(1.2); opacity: 1; }
+    }
+
+    .message {
+      font-size: 1.3em;
+      color: #ffb6c1;
+      max-width: 800px;
+      line-height: 1.8;
+      animation: fadeIn 3s ease-in;
+      position: relative;
+      z-index: 10;
+      margin-top: 30px;
+      text-shadow: 0 0 5px rgba(255, 182, 193, 0.7);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: -1;
       pointer-events: none;
-    }
-
-    #music-notice {
-      background-color: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 10px;
-      border-radius: 8px;
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-      display: none;
-    }
-
-    iframe {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 300px;
-      height: 200px;
-      border: none;
       z-index: 1;
+    }
+    
+    .music-notice {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      padding: 10px 20px;
+      border-radius: 20px;
+      z-index: 100;
+      animation: pulse 2s infinite;
+      font-size: 1.1em;
+    }
+    
+    #youtubePlayer {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      height: 170px;
+      border: none;
+      border-radius: 10px;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.5s;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    
+    #youtubePlayer.visible {
+      opacity: 1;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 0.7; transform: translateX(-50%) scale(0.95); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+      100% { opacity: 0.7; transform: translateX(-50%) scale(0.95); }
     }
   </style>
 </head>
 <body>
-  <h1>Pomodoro Timer</h1>
-  <div id="timer">25:00</div>
-  <button onclick="startTimer()">Bắt đầu</button>
-  <button onclick="resetTimer()">Đặt lại</button>
 
-  <div id="music-notice">Nhấn vào màn hình để bật nhạc</div>
+  <!-- Player YouTube (ẩn ban đầu) -->
+  <iframe 
+    id="youtubePlayer"
+    src="https://www.youtube.com/embed/5DcKlZnmVNs?enablejsapi=1&autoplay=0&controls=1" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+  
+  <div class="music-notice" id="musicNotice">🎵 NHẤN VÀO TRANG ĐỂ BẬT NHẠC TỪ YOUTUBE</div>
+
   <canvas id="fireworks"></canvas>
-  <iframe id="youtube-player" src="https://www.youtube.com/embed/hHW1oY26kxQ?enablejsapi=1&autoplay=0" allow="autoplay"></iframe>
+
+  <div class="container" id="mainContainer">
+    <h1>🎉 CHÚC MỪNG SINH NHẬT 🎉</h1>
+
+    <div class="cake">
+      <div class="layer layer1"></div>
+      <div class="layer layer2"></div>
+      <div class="layer layer3"></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+
+    <div class="message">
+      Hôm nay là một ngày thật đặc biệt!<br>
+      Ngày mà cả thế giới có thêm một thiên thần tỏa sáng ✨<br><br>
+      Chúc bạn một sinh nhật ngập tràn:<br>
+      💖 Hạnh phúc | 🎊 Niềm vui | 🎁 May mắn<br><br>
+      Mong mọi điều tốt đẹp nhất sẽ đến với bạn!<br>
+      Cảm ơn bạn đã là chính bạn - tuyệt vời và duy nhất 💫<br><br>
+      🎂 CHÚC MỪNG SINH NHẬT! 🥳
+    </div>
+  </div>
 
   <script>
-    let timerDisplay = document.getElementById('timer');
-    let musicNotice = document.getElementById('music-notice');
-    let youtubePlayer = document.getElementById('youtube-player');
-    let mainContainer = document.body;
-
-    let duration = 25 * 60;
-    let timer;
-    let isRunning = false;
-
-    function updateDisplay(seconds) {
-      let min = Math.floor(seconds / 60);
-      let sec = seconds % 60;
-      timerDisplay.textContent = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-    }
-
-    function startTimer() {
-      if (isRunning) return;
-      isRunning = true;
-      timer = setInterval(() => {
-        if (duration > 0) {
-          duration--;
-          updateDisplay(duration);
-        } else {
-          clearInterval(timer);
-          isRunning = false;
-        }
-      }, 1000);
-    }
-
-    function resetTimer() {
-      clearInterval(timer);
-      duration = 25 * 60;
-      updateDisplay(duration);
-      isRunning = false;
-    }
-
-    // Nhạc và thông báo
+    // Xử lý YouTube Player
+    const youtubePlayer = document.getElementById('youtubePlayer');
+    const musicNotice = document.getElementById('musicNotice');
+    const mainContainer = document.getElementById('mainContainer');
+    
+    let musicStarted = false;
+    
     function startMusic() {
-      youtubePlayer.src += "&autoplay=1";
-      mainContainer.removeEventListener('click', startMusic);
-      mainContainer.removeEventListener('touchstart', startMusic);
-      musicNotice.style.display = "block";
-      setTimeout(() => {musicNotice.style.display = "none";
-      }, 1000);
+      if (musicStarted) return;
+      
+      // Hiển thị player YouTube
+      youtubePlayer.classList.add('visible');
+      
+      // Phát nhạc tự động (YouTube không cho phép autoplay nên cần user tương tác)
+      try {
+        youtubePlayer.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      } catch (e) {
+        console.log("Lỗi khi phát video:", e);
+      }
+      
+      musicStarted = true;
+      musicNotice.innerHTML = "🎶 NHẠC SINH NHẬT ĐANG PHÁT TRÊN YOUTUBE";
+      setTimeout(() => {
+        musicNotice.style.opacity = 0;
+        setTimeout(() => {
+          musicNotice.style.display = "none";
+        }, 1000);
+      }, 3000);
     }
-
+    
+    // Bật nhạc khi click/touch
     mainContainer.addEventListener('click', startMusic);
     mainContainer.addEventListener('touchstart', startMusic);
 
@@ -147,7 +251,7 @@
         this.decay = Math.random() * 0.015 + 0.01;
         this.size = Math.random() * 3 + 2;
       }
-
+      
       draw() {
         ctx.globalAlpha = this.alpha;
         ctx.fillStyle = this.color;
@@ -155,7 +259,7 @@
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
       }
-
+      
       update() {
         this.velocity.y += 0.05;
         this.x += this.velocity.x;
@@ -167,16 +271,17 @@
     }
 
     let particles = [];
-
+    
     function createFirework(x, y) {
       const colors = [
-        '#ff0000', '#ffff00', '#00ff00',
+        '#ff0000', '#ffff00', '#00ff00', 
         '#00ffff', '#0000ff', '#ff00ff',
         '#ff9900', '#ff0099', '#9900ff'
       ];
-
+      
       const particleCount = 150;
-
+      const angleIncrement = (Math.PI * 2) / particleCount;
+      
       for (let i = 0; i < particleCount; i++) {
         const color = colors[Math.floor(Math.random() * colors.length)];
         particles.push(new Particle(x, y, color));
@@ -186,20 +291,29 @@
     function animate() {
       ctx.fillStyle = 'rgba(10, 10, 20, 0.2)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles = particles.filter(p => p.update());
-
+      
+      particles = particles.filter(particle => particle.update());
+      
+      // Tự động tạo pháo hoa
       if (Math.random() < 0.03 && particles.length < 1000) {
-        createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.5);
+        createFirework(
+          Math.random() * canvas.width,
+          Math.random() * canvas.height * 0.5
+        );
       }
-
+      
       requestAnimationFrame(animate);
     }
 
-    youtubePlayer.onload = function () {
+    // Tạo pháo hoa khi nhạc bắt đầu
+    youtubePlayer.onload = function() {
+      // Tạo 3 pháo hoa ngay lập tức
       for (let i = 0; i < 3; i++) {
         setTimeout(() => {
-          createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.5);
+          createFirework(
+            Math.random() * canvas.width,
+            Math.random() * canvas.height * 0.5
+          );
         }, i * 300);
       }
     };
