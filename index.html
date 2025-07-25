@@ -289,8 +289,13 @@
     }
 
     function animate() {
-      ctx.fillStyle = 'rgba(10, 10, 20, 0.2)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // ❌ Đừng dùng dòng này nếu không muốn làm tối nền
+// ctx.fillStyle = 'rgba(10, 10, 20, 0.2)';
+// ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// ✅ Dùng clearRect thay thế
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       
       particles = particles.filter(particle => particle.update());
       
