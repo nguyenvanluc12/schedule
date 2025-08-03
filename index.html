@@ -1,336 +1,292 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Chúc Mừng Sinh Nhật!</title>
-  <style>
-   html, body {
-  margin: 0;
-  padding: 0;
-  background: #1a1a1a url('https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/520262592_122140360688771341_7341266968348833978_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF4NKsHEvQr3kGxZQs-bHlC4N8lGFYLo8ng3yUYVgujyaWMcl9aDewFEHebcocvj3xXsgiyRFnSjnFvVyYKQ9Xy&_nc_ohc=qgHOqcJjlCUQ7kNvwHv9Kfr&_nc_oc=AdlasptwgZrFDUuvrEoSgtDgQnLaAkOWdN1AdEfs5S6tpdPV6f4iXfSK6BZSEDJYimU&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=1bhrAWtf_WqTmDpRxeH47A&oh=00_AfTU9IDz1-yZYvNdbBWop7DT1ujH-V8gCtbksWoMnTTPtw&oe=6888E8CF') no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  height: 100%;
-  overflow: hidden;
-  cursor: pointer;
-}
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      z-index: 10;
-      position: relative;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 3em;
-      color: #FFD700;
-      animation: glow 1.5s infinite alternate;
-      margin-bottom: 20px;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFA500;
-      }
-      to {
-        text-shadow: 0 0 20px #FFD700, 0 0 30px #FF4500;
-      }
-    }
-
-    .cake {
-      position: relative;
-      margin: 20px auto;
-      width: 220px;
-      height: auto;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-
-    .layer {
-      width: 100%;
-      margin: 0 auto;
-      background: pink;
-      border: 4px solid #fff;
-      box-shadow: 0 5px 10px rgba(255, 105, 180, 0.5);
-      border-radius: 10px;
-    }
-
-    .layer1 { height: 60px; width: 220px; background: #ffc0cb; }
-    .layer2 { height: 50px; width: 180px; background: #ffb6c1; margin-top: -10px; }
-    .layer3 { height: 40px; width: 140px; background: #ff99cc; margin-top: -10px; }
-
-    .candle {
-      width: 10px;
-      height: 40px;
-      background: white;
-      position: absolute;
-      top: -60px;
-      left: calc(50% - 5px);
-      border-radius: 3px;
-      box-shadow: 0 0 5px #fff;
-    }
-
-    .flame {
-      width: 10px;
-      height: 15px;
-      background: orange;
-      border-radius: 50% 50% 20% 20%;
-      position: absolute;
-      top: -15px;
-      left: 0;
-      animation: flicker 0.3s infinite alternate;
-      box-shadow: 0 0 10px #FF4500, 0 0 20px #FFD700;
-    }
-
-    @keyframes flicker {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-      100% { transform: scale(1.2); opacity: 1; }
-    }
-
-    .message {
-      font-size: 1.3em;
-      color: #ffb6c1;
-      max-width: 800px;
-      line-height: 1.8;
-      animation: fadeIn 3s ease-in;
-      position: relative;
-      z-index: 10;
-      margin-top: 30px;
-      text-shadow: 0 0 5px rgba(255, 182, 193, 0.7);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 1;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    .music-notice {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      padding: 10px 20px;
-      border-radius: 20px;
-      z-index: 100;
-      animation: pulse 2s infinite;
-      font-size: 1.1em;
-    }
+    <!-- Meta Tags Facebook/Messenger -->
+    <meta property="og:title" content="🎉 Chúc Mừng Sinh Nhật Minh Thư">
+    <meta property="og:description" content="Gửi tới Minh Thư những lời chúc tốt đẹp nhất trong ngày sinh nhật!">
+    <meta property="og:image" content="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/515316001_733710282575768_1529321483186552827_n.jpg">
+    <meta property="og:url" content="https://your-website.com/sinhnhat-minhthu">
+    <meta property="og:type" content="website">
+    <meta property="og:video" content="https://www.youtube.com/v/5DcKlZnmVNs">
+    <meta property="og:video:type" content="text/html">
+    <meta property="og:video:width" content="1280">
+    <meta property="og:video:height" content="720">
     
-    #youtubePlayer {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      height: 170px;
-      border: none;
-      border-radius: 10px;
-      z-index: 100;
-      opacity: 0;
-      transition: opacity 0.5s;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-    
-    #youtubePlayer.visible {
-      opacity: 1;
-    }
-    
-    @keyframes pulse {
-      0% { opacity: 0.7; transform: translateX(-50%) scale(0.95); }
-      50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
-      100% { opacity: 0.7; transform: translateX(-50%) scale(0.95); }
-    }
-  </style>
+    <title>Chúc Mừng Sinh Nhật Minh Thư!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffcce6, #ff99cc);
+            text-align: center;
+            padding: 20px;
+            color: #cc0066;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            animation: fadeIn 1.5s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            color: #ff0066;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            font-size: 2.3em;
+            margin-bottom: 15px;
+        }
+        .birthday-img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 50%;
+            margin: 20px 0;
+            border: 8px solid #ff99cc;
+            box-shadow: 0 5px 20px rgba(255, 102, 178, 0.4);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        .birthday-img:hover {
+            transform: rotate(5deg) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 102, 178, 0.6);
+        }
+        .message {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: center;
+            padding: 0 10px;
+            color: #660033;
+        }
+        .message p {
+            margin-bottom: 15px;
+            position: relative;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ffb3d9;
+        }
+        .signature {
+            font-style: italic;
+            color: #ff0066;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 25px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .heart {
+            color: #ff0066;
+            font-size: 1.3em;
+            animation: heartbeat 1.2s infinite;
+            display: inline-block;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            z-index: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-50px) rotate(180deg); opacity: 1; }
+            100% { transform: translateY(0) rotate(360deg); opacity: 0.8; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cake {
+            font-size: 2em;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .play-btn {
+            background: #ff0066;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            margin: 15px 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(255, 0, 102, 0.3);
+        }
+        .play-btn:hover {
+            background: #e6005c;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(255, 0, 102, 0.4);
+        }
+        .music-info {
+            font-size: 14px;
+            color: #99004d;
+            margin-top: 5px;
+        }
+        #messenger-play-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff0066;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Player YouTube (ẩn ban đầu) -->
-  <iframe 
-    id="youtubePlayer"
-    src="https://www.youtube.com/embed/5DcKlZnmVNs?enablejsapi=1&autoplay=0&controls=1" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-  
-  <div class="music-notice" id="musicNotice">🎵 NHẤN VÀO TRANG ĐỂ BẬT NHẠC TỪ YOUTUBE</div>
-
-  <canvas id="fireworks"></canvas>
-
-  <div class="container" id="mainContainer">
-    <h1>🎉 CHÚC MỪNG SINH NHẬT 🎉</h1>
-
-    <div class="cake">
-      <div class="layer layer1"></div>
-      <div class="layer layer2"></div>
-      <div class="layer layer3"></div>
-      <div class="candle"><div class="flame"></div></div>
+    <!-- Bubbles background -->
+    <div id="bubbles"></div>
+    
+    <div class="container">
+        <h1><span class="cake">🎂</span> Chúc Mừng Sinh Nhật Minh Thư! <span class="cake">🎉</span></h1>
+        
+        <!-- Ảnh Minh Thư -->
+        <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/515316001_733710282575768_1529321483186552827_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeH1zxBHeRV4HAqmfwJ6oTOOnhEcguCqt0KeERyC4Kq3Qpf6GNZ7FXkSRfWpKll-YXJM0oAxgdzXCPvOxZcOxFxf&_nc_ohc=vzeDPPRWPscQ7kNvwFJ9Vvb&_nc_oc=Adn8nxtc9d2OvANAIu0uOfIVO8fF3wPjwCLbbAVMnB56CFCcKq6Vo0f316pVzIjCXk4&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=sDmSLxfeF3Vs4kxe-O8crg&oh=00_AfQP61lNk6IgqzmRSL897sRytL1Fi0koFsXrbgVktAnDOA&oe=6894D3A9" 
+             alt="Minh Thư xinh đẹp" class="birthday-img" title="Minh Thư sinh nhật vui vẻ!">
+        
+        <div class="message">
+            <p>Gửi đến Minh Thư yêu quý!</p>
+            
+            <p>Nhân ngày đặc biệt này, chúc em một sinh nhật tràn ngập niềm vui và hạnh phúc <span class="heart">❤️</span></p>
+            
+            <p>Chúc em tuổi mới:</p>
+            
+            <p>💕 Luôn xinh đẹp rạng ngời như đóa hoa ban mai</p>
+            
+            <p>💕 Gặp nhiều may mắn và thành công trên mọi nẻo đường</p>
+            
+            <p>💕 Có thật nhiều sức khỏe để theo đuổi đam mê</p>
+            
+            <p>💕 Luôn giữ được nụ cười tươi và trái tim ấm áp</p>
+            
+            <p>💕 Mọi ước nguyện đều trở thành hiện thực</p>
+            
+            <p>Hãy luôn là cô gái tuyệt vời mà em vốn có nhé! Chúc em có một ngày sinh nhật thật đặc biệt và ý nghĩa!</p>
+        </div>
+        
+        <!-- Nút phát nhạc chính -->
+        <button class="play-btn" onclick="playMusic()">
+            🎵 Bấm để phát nhạc chúc mừng
+        </button>
+        <div class="music-info">Bài hát: Bỗng Dưng Muốn Khóc - Mỹ Tâm</div>
+        
+        <!-- Nút play cho Messenger (ẩn ban đầu) -->
+        <div id="messenger-play-btn">▶️</div>
+        
+        <!-- Nhúng video YouTube -->
+        <iframe 
+            id="yt-player" 
+            width="0" 
+            height="0" 
+            src="https://www.youtube-nocookie.com/embed/5DcKlZnmVNs?rel=0&modestbranding=1&controls=0&disablekb=1&fs=0&enablejsapi=1&si=TZQSXf_zwyKkD00s" 
+            frameborder="0" 
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+        
+        <p class="signature">Gửi em với tất cả yêu thương! <span class="heart">❤️</span></p>
     </div>
 
-    <div class="message">
-      Hôm nay là một ngày thật đặc biệt!<br>
-      Ngày mà cả thế giới có thêm một thiên thần tỏa sáng ✨<br><br>
-      Chúc bạn một sinh nhật ngập tràn:<br>
-      💖 Hạnh phúc | 🎊 Niềm vui | 🎁 May mắn<br><br>
-      Mong mọi điều tốt đẹp nhất sẽ đến với bạn!<br>
-      Cảm ơn bạn đã là chính bạn - tuyệt vời và duy nhất 💫<br><br>
-      🎂 CHÚC MỪNG SINH NHẬT! 🥳
-    </div>
-  </div>
-
-  <script>
-    // Xử lý YouTube Player
-    const youtubePlayer = document.getElementById('youtubePlayer');
-    const musicNotice = document.getElementById('musicNotice');
-    const mainContainer = document.getElementById('mainContainer');
-    
-    let musicStarted = false;
-    
-    function startMusic() {
-      if (musicStarted) return;
-      
-      // Hiển thị player YouTube
-      youtubePlayer.classList.add('visible');
-      
-      // Phát nhạc tự động (YouTube không cho phép autoplay nên cần user tương tác)
-      try {
-        youtubePlayer.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-      } catch (e) {
-        console.log("Lỗi khi phát video:", e);
-      }
-      
-      musicStarted = true;
-      musicNotice.innerHTML = "🎶 NHẠC SINH NHẬT ĐANG PHÁT TRÊN YOUTUBE";
-      setTimeout(() => {
-        musicNotice.style.opacity = 0;
-        setTimeout(() => {
-          musicNotice.style.display = "none";
-        }, 1000);
-      }, 3000);
-    }
-    
-    // Bật nhạc khi click/touch
-    mainContainer.addEventListener('click', startMusic);
-    mainContainer.addEventListener('touchstart', startMusic);
-
-    // Pháo hoa
-    const canvas = document.getElementById('fireworks');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    class Particle {
-      constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-        this.velocity = {
-          x: (Math.random() - 0.5) * 8,
-          y: (Math.random() - 0.5) * 8
+    <script>
+        // Tạo bong bóng bay
+        function createBubbles() {
+            const bubblesContainer = document.getElementById('bubbles');
+            const colors = ['#ffccdd', '#ffb3d9', '#ff99cc', '#ff80bf', '#ff66b3'];
+            
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                const size = Math.random() * 60 + 20;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 5;
+                
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = posX + 'vw';
+                bubble.style.bottom = -size + 'px';
+                bubble.style.animationDelay = delay + 's';
+                bubble.style.animationDuration = duration + 's';
+                bubble.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                bubblesContainer.appendChild(bubble);
+            }
+        }
+        
+        // Hàm phát nhạc
+        function playMusic() {
+            const iframe = document.getElementById('yt-player');
+            iframe.src = iframe.src.split('?')[0] + "?autoplay=1&mute=0&rel=0&modestbranding=1";
+            document.querySelector('.play-btn').textContent = "🎵 Nhạc đang phát...";
+            document.querySelector('.play-btn').style.background = "#4CAF50";
+        }
+        
+        // Kiểm tra nếu là Messenger
+        function checkMessenger() {
+            const isMessenger = /FBAN|FBAV|Messenger/i.test(navigator.userAgent);
+            if (isMessenger) {
+                document.getElementById('messenger-play-btn').style.display = 'flex';
+            }
+        }
+        
+        // Sự kiện click cho nút play Messenger
+        document.getElementById('messenger-play-btn').addEventListener('click', function() {
+            playMusic();
+            this.style.display = 'none';
+        });
+        
+        // Khởi tạo khi trang load
+        window.onload = function() {
+            createBubbles();
+            checkMessenger();
+            
+            // Thêm hiệu ứng khi di chuột vào ảnh
+            const img = document.querySelector('.birthday-img');
+            img.addEventListener('mouseenter', function() {
+                this.style.transform = 'rotate(-5deg) scale(1.1)';
+            });
+            img.addEventListener('mouseleave', function() {
+                this.style.transform = 'rotate(0) scale(1)';
+            });
         };
-        this.alpha = 1;
-        this.decay = Math.random() * 0.015 + 0.01;
-        this.size = Math.random() * 3 + 2;
-      }
-      
-      draw() {
-        ctx.globalAlpha = this.alpha;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      
-      update() {
-        this.velocity.y += 0.05;
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
-        this.alpha -= this.decay;
-        this.draw();
-        return this.alpha > 0;
-      }
-    }
-
-    let particles = [];
-    
-    function createFirework(x, y) {
-      const colors = [
-        '#ff0000', '#ffff00', '#00ff00', 
-        '#00ffff', '#0000ff', '#ff00ff',
-        '#ff9900', '#ff0099', '#9900ff'
-      ];
-      
-      const particleCount = 150;
-      const angleIncrement = (Math.PI * 2) / particleCount;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        particles.push(new Particle(x, y, color));
-      }
-    }
-
-    function animate() {
-      // ❌ Đừng dùng dòng này nếu không muốn làm tối nền
-// ctx.fillStyle = 'rgba(10, 10, 20, 0.2)';
-// ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-// ✅ Dùng clearRect thay thế
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      
-      particles = particles.filter(particle => particle.update());
-      
-      // Tự động tạo pháo hoa
-      if (Math.random() < 0.03 && particles.length < 1000) {
-        createFirework(
-          Math.random() * canvas.width,
-          Math.random() * canvas.height * 0.5
-        );
-      }
-      
-      requestAnimationFrame(animate);
-    }
-
-    // Tạo pháo hoa khi nhạc bắt đầu
-    youtubePlayer.onload = function() {
-      // Tạo 3 pháo hoa ngay lập tức
-      for (let i = 0; i < 3; i++) {
-        setTimeout(() => {
-          createFirework(
-            Math.random() * canvas.width,
-            Math.random() * canvas.height * 0.5
-          );
-        }, i * 300);
-      }
-    };
-
-    animate();
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      youtubePlayer.style.right = "20px";
-      youtubePlayer.style.bottom = "20px";
-    });
-  </script>
+        
+        // Tự động thử phát nhạc khi có tương tác
+        document.addEventListener('click', function() {
+            try {
+                const iframe = document.getElementById('yt-player');
+                if(!iframe.src.includes('autoplay=1')) {
+                    iframe.src += "&autoplay=1&mute=0";
+                }
+            } catch (e) {
+                console.log("Lỗi khi phát nhạc:", e);
+            }
+        }, { once: true });
+    </script>
 </body>
 </html>
