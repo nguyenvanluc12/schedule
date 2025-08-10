@@ -1,88 +1,68 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Meta Tags Facebook/Messenger -->
-    <meta property="og:title" content="🎉 Chúc Mừng Sinh Nhật Minh Thư">
-    <meta property="og:description" content="Gửi tới Minh Thư những lời chúc tốt đẹp nhất trong ngày sinh nhật!">
-    <meta property="og:image" content="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/515316001_733710282575768_1529321483186552827_n.jpg">
-    <meta property="og:url" content="https://your-website.com/sinhnhat-minhthu">
-    <meta property="og:type" content="website">
-    <meta property="og:video" content="https://www.youtube.com/v/5DcKlZnmVNs">
-    <meta property="og:video:type" content="text/html">
-    <meta property="og:video:width" content="1280">
-    <meta property="og:video:height" content="720">
-    
     <title>Chúc Mừng Sinh Nhật Minh Thư!</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ffcce6, #ff99cc);
-            text-align: center;
-            padding: 20px;
-            color: #cc0066;
+            background: #ffe6f2;
             margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
+            padding: 20px;
+            color: #660033;
         }
-        .container {
+        .birthday-card {
             max-width: 600px;
-            margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.95);
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
             padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            animation: fadeIn 1.5s ease-in-out;
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 5px 15px rgba(255, 0, 102, 0.1);
+            text-align: center;
         }
         h1 {
             color: #ff0066;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-            font-size: 2.3em;
-            margin-bottom: 15px;
+            font-size: 28px;
+            margin-bottom: 20px;
         }
-        .birthday-img {
-            width: 100%;
-            max-width: 350px;
+        .main-photo {
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
-            margin: 20px 0;
+            object-fit: cover;
             border: 8px solid #ff99cc;
-            box-shadow: 0 5px 20px rgba(255, 102, 178, 0.4);
-            transition: transform 0.5s, box-shadow 0.5s;
+            margin: 15px auto;
+            display: block;
         }
-        .birthday-img:hover {
-            transform: rotate(5deg) scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 102, 178, 0.6);
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .gallery img {
+            width: calc(50% - 15px);
+            max-width: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+            height: 120px;
         }
         .message {
-            font-size: 18px;
             line-height: 1.8;
-            margin-bottom: 25px;
-            text-align: center;
-            padding: 0 10px;
-            color: #660033;
-        }
-        .message p {
-            margin-bottom: 15px;
-            position: relative;
-            padding: 8px 0;
-            border-bottom: 1px dashed #ffb3d9;
+            font-size: 16px;
+            margin: 20px 0;
         }
         .signature {
             font-style: italic;
             color: #ff0066;
             font-weight: bold;
-            font-size: 1.2em;
             margin-top: 25px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         .heart {
             color: #ff0066;
-            font-size: 1.3em;
-            animation: heartbeat 1.2s infinite;
+            animation: heartbeat 1.5s infinite;
             display: inline-block;
         }
         @keyframes heartbeat {
@@ -92,201 +72,41 @@
             75% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-        .bubble {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-            z-index: 0;
-        }
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-            50% { transform: translateY(-50px) rotate(180deg); opacity: 1; }
-            100% { transform: translateY(0) rotate(360deg); opacity: 0.8; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .cake {
-            font-size: 2em;
-            animation: bounce 2s infinite;
-            display: inline-block;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        .play-btn {
-            background: #ff0066;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 30px;
-            margin: 15px 0;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(255, 0, 102, 0.3);
-        }
-        .play-btn:hover {
-            background: #e6005c;
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(255, 0, 102, 0.4);
-        }
-        .music-info {
-            font-size: 14px;
-            color: #99004d;
-            margin-top: 5px;
-        }
-        #messenger-play-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff0066;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
-    <!-- Bubbles background -->
-    <div id="bubbles"></div>
-    
-    <div class="container">
-        <h1><span class="cake">🎂</span> Chúc Mừng Sinh Nhật Minh Thư! <span class="cake">🎉</span></h1>
+    <div class="birthday-card">
+        <h1>🎉 Chúc Mừng Sinh Nhật Minh Thư! 🎂</h1>
         
-        <!-- Ảnh Minh Thư -->
         <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/515316001_733710282575768_1529321483186552827_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeH1zxBHeRV4HAqmfwJ6oTOOnhEcguCqt0KeERyC4Kq3Qpf6GNZ7FXkSRfWpKll-YXJM0oAxgdzXCPvOxZcOxFxf&_nc_ohc=vzeDPPRWPscQ7kNvwFJ9Vvb&_nc_oc=Adn8nxtc9d2OvANAIu0uOfIVO8fF3wPjwCLbbAVMnB56CFCcKq6Vo0f316pVzIjCXk4&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=sDmSLxfeF3Vs4kxe-O8crg&oh=00_AfQP61lNk6IgqzmRSL897sRytL1Fi0koFsXrbgVktAnDOA&oe=6894D3A9" 
-             alt="Minh Thư xinh đẹp" class="birthday-img" title="Minh Thư sinh nhật vui vẻ!">
+             alt="Minh Thư" class="main-photo">
         
-        <div class="message">
-            <p>Gửi đến Minh Thư yêu quý!</p>
-            
-            <p>Nhân ngày đặc biệt này, chúc em một sinh nhật tràn ngập niềm vui và hạnh phúc <span class="heart">❤️</span></p>
-            
-            <p>Chúc em tuổi mới:</p>
-            
-            <p>💕 Luôn xinh đẹp rạng ngời như đóa hoa ban mai</p>
-            
-            <p>💕 Gặp nhiều may mắn và thành công trên mọi nẻo đường</p>
-            
-            <p>💕 Có thật nhiều sức khỏe để theo đuổi đam mê</p>
-            
-            <p>💕 Luôn giữ được nụ cười tươi và trái tim ấm áp</p>
-            
-            <p>💕 Mọi ước nguyện đều trở thành hiện thực</p>
-            
-            <p>Hãy luôn là cô gái tuyệt vời mà em vốn có nhé! Chúc em có một ngày sinh nhật thật đặc biệt và ý nghĩa!</p>
+        <div class="gallery">
+            <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/530612678_761270749819721_2348883800097885409_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGc5StXHGLeJDfa4I1tUPSmADh_h2_ETG8AOH-Hb8RMb0lbqacwO0BL2fwTq8Osk9vxEymcZNiv3bKcVKHwGaQB&_nc_ohc=WntiyFWBpbAQ7kNvwFTaYQ5&_nc_oc=Adnrd7wctwbpwWoEe5PCYvIpzLHl1UPJjR7syrTxesVVamZqk3tbRr1gDVWsj6H16QI&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=gR_d1WLLverM8oJbxuksng&oh=00_AfVlyi4-uR7NWw0KAJLF8sdZsDSd3f939EKHB2bJjmIV5g&oe=689E4469" 
+                 alt="Minh Thư 1">
+            <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/529697259_761270799819716_7170319545026756141_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEhvtkBAsGLdEALboZUYN9VYb07l614CYJhvTuXrXgJguSo3e0Nyv60O-etlxgg03wdX-04vdkq5YpYUnjb--4Q&_nc_ohc=1uUfjVYgVJMQ7kNvwGuERBd&_nc_oc=AdmTgim8O6AUO_5Dm8__Yx75cS7jJuURcO33MVfpcPii33Jc_XMK7ziyHjo6aDABHsg&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=RQAwqJvtc_W1cVSmGSwwaQ&oh=00_AfU3y8_QRRLMkOl_Bs_debK3Q5XJobDql7eww42PLccMpA&oe=689E2EFE" 
+                 alt="Minh Thư 2">
+            <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/529397682_761270646486398_8080666481101202403_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGzFc-zGef-5b8PAQ3r8SYaiMYQCwKhvhqIxhALAqG-GqylYXaZx18-t57Etvq4bJie8fDO0lVR6n5Uq9J7Pnw-&_nc_ohc=P4E-uUJInUYQ7kNvwG1if5C&_nc_oc=Adkv0iqQSsc3mi_Q8eutxZ9rKFL0w7bdGgpF9Ti_vABK6auY5gnVTErIwbnutaS_cig&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=A6I_8wbr-8wr1bWVymesAQ&oh=00_AfURzTf2E7z2nW-xrho0F_HnykM6klYlvugZwouu4mcSKQ&oe=689E4325" 
+                 alt="Minh Thư 3">
+            <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/515316001_733710282575768_1529321483186552827_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeH1zxBHeRV4HAqmfwJ6oTOOnhEcguCqt0KeERyC4Kq3Qpf6GNZ7FXkSRfWpKll-YXJM0oAxgdzXCPvOxZcOxFxf&_nc_ohc=vzeDPPRWPscQ7kNvwFJ9Vvb&_nc_oc=Adn8nxtc9d2OvANAIu0uOfIVO8fF3wPjwCLbbAVMnB56CFCcKq6Vo0f316pVzIjCXk4&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=sDmSLxfeF3Vs4kxe-O8crg&oh=00_AfQP61lNk6IgqzmRSL897sRytL1Fi0koFsXrbgVktAnDOA&oe=6894D3A9" 
+                 alt="Minh Thư 4">
         </div>
         
-        <!-- Nút phát nhạc chính -->
-        <button class="play-btn" onclick="playMusic()">
-            🎵 Bấm để phát nhạc chúc mừng
-        </button>
-        <div class="music-info">Bài hát: Bỗng Dưng Muốn Khóc - Mỹ Tâm</div>
+        <div class="message">
+            <p>Gửi đến Minh Thư nhân ngày sinh nhật!</p>
+            
+            <p>💝 Chúc tuổi mới tràn ngập niềm vui</p>
+            <p>🌸 Luôn rạng rỡ như đóa hoa mai</p>
+            <p>🎀 Gặp nhiều may mắn và hạnh phúc</p>
+            <p>📚 Thành công trên con đường học vấn</p>
+            <p>👑 Mãi là cô gái tuyệt vời nhất</p>
+            
+            <p>Hãy luôn giữ nụ cười tươi tắn và trái tim ấm áp nhé!</p>
+        </div>
         
-        <!-- Nút play cho Messenger (ẩn ban đầu) -->
-        <div id="messenger-play-btn">▶️</div>
-        
-        <!-- Nhúng video YouTube -->
-        <iframe 
-            id="yt-player" 
-            width="0" 
-            height="0" 
-            src="https://www.youtube-nocookie.com/embed/5DcKlZnmVNs?rel=0&modestbranding=1&controls=0&disablekb=1&fs=0&enablejsapi=1&si=TZQSXf_zwyKkD00s" 
-            frameborder="0" 
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-        </iframe>
-        
-        <p class="signature">Gửi em với tất cả yêu thương! <span class="heart">❤️</span></p>
+        <div class="signature">
+            Happy 16th Birthday! <span class="heart">❤️</span>
+        </div>
     </div>
-
-    <script>
-        // Tạo bong bóng bay
-        function createBubbles() {
-            const bubblesContainer = document.getElementById('bubbles');
-            const colors = ['#ffccdd', '#ffb3d9', '#ff99cc', '#ff80bf', '#ff66b3'];
-            
-            for (let i = 0; i < 20; i++) {
-                const bubble = document.createElement('div');
-                bubble.className = 'bubble';
-                
-                const size = Math.random() * 60 + 20;
-                const posX = Math.random() * 100;
-                const delay = Math.random() * 5;
-                const duration = Math.random() * 10 + 5;
-                
-                bubble.style.width = size + 'px';
-                bubble.style.height = size + 'px';
-                bubble.style.left = posX + 'vw';
-                bubble.style.bottom = -size + 'px';
-                bubble.style.animationDelay = delay + 's';
-                bubble.style.animationDuration = duration + 's';
-                bubble.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                bubblesContainer.appendChild(bubble);
-            }
-        }
-        
-        // Hàm phát nhạc
-        function playMusic() {
-            const iframe = document.getElementById('yt-player');
-            iframe.src = iframe.src.split('?')[0] + "?autoplay=1&mute=0&rel=0&modestbranding=1";
-            document.querySelector('.play-btn').textContent = "🎵 Nhạc đang phát...";
-            document.querySelector('.play-btn').style.background = "#4CAF50";
-        }
-        
-        // Kiểm tra nếu là Messenger
-        function checkMessenger() {
-            const isMessenger = /FBAN|FBAV|Messenger/i.test(navigator.userAgent);
-            if (isMessenger) {
-                document.getElementById('messenger-play-btn').style.display = 'flex';
-            }
-        }
-        
-        // Sự kiện click cho nút play Messenger
-        document.getElementById('messenger-play-btn').addEventListener('click', function() {
-            playMusic();
-            this.style.display = 'none';
-        });
-        
-        // Khởi tạo khi trang load
-        window.onload = function() {
-            createBubbles();
-            checkMessenger();
-            
-            // Thêm hiệu ứng khi di chuột vào ảnh
-            const img = document.querySelector('.birthday-img');
-            img.addEventListener('mouseenter', function() {
-                this.style.transform = 'rotate(-5deg) scale(1.1)';
-            });
-            img.addEventListener('mouseleave', function() {
-                this.style.transform = 'rotate(0) scale(1)';
-            });
-        };
-        
-        // Tự động thử phát nhạc khi có tương tác
-        document.addEventListener('click', function() {
-            try {
-                const iframe = document.getElementById('yt-player');
-                if(!iframe.src.includes('autoplay=1')) {
-                    iframe.src += "&autoplay=1&mute=0";
-                }
-            } catch (e) {
-                console.log("Lỗi khi phát nhạc:", e);
-            }
-        }, { once: true });
-    </script>
 </body>
 </html>
