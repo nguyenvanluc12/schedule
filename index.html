@@ -1,112 +1,279 @@
-<!DOCTYPE html>
-<html>
+
+      <!DOCTYPE html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chúc Mừng Sinh Nhật Minh Thư!</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #ffe6f2;
-            margin: 0;
-            padding: 20px;
-            color: #660033;
-        }
-        .birthday-card {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(255, 0, 102, 0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #ff0066;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        .main-photo {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 8px solid #ff99cc;
-            margin: 15px auto;
-            display: block;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .gallery img {
-            width: calc(50% - 15px);
-            max-width: 180px;
-            border-radius: 10px;
-            object-fit: cover;
-            height: 120px;
-        }
-        .message {
-            line-height: 1.8;
-            font-size: 16px;
-            margin: 20px 0;
-        }
-        .signature {
-            font-style: italic;
-            color: #ff0066;
-            font-weight: bold;
-            margin-top: 25px;
-        }
-        .heart {
-            color: #ff0066;
-            animation: heartbeat 1.5s infinite;
-            display: inline-block;
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Bảng Theo Dõi Thi Đua</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .signature {
+      width: 45%;
+      text-align: center;
+    }
+    .signature p {
+      margin: 10px 0;
+    }
+    textarea {
+      width: 98%;
+      height: 120px;
+      resize: vertical;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 8px;
+    }
+  </style>
 </head>
 <body>
-    <div class="birthday-card">
-        <h1>🎉 Chúc Mừng Sinh Nhật Minh Thư! 🎂</h1>
-        
-        <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/515316001_733710282575768_1529321483186552827_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeH1zxBHeRV4HAqmfwJ6oTOOnhEcguCqt0KeERyC4Kq3Qpf6GNZ7FXkSRfWpKll-YXJM0oAxgdzXCPvOxZcOxFxf&_nc_ohc=vzeDPPRWPscQ7kNvwFJ9Vvb&_nc_oc=Adn8nxtc9d2OvANAIu0uOfIVO8fF3wPjwCLbbAVMnB56CFCcKq6Vo0f316pVzIjCXk4&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=sDmSLxfeF3Vs4kxe-O8crg&oh=00_AfQP61lNk6IgqzmRSL897sRytL1Fi0koFsXrbgVktAnDOA&oe=6894D3A9" 
-             alt="Minh Thư" class="main-photo">
-        
-        <div class="gallery">
-            <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/530612678_761270749819721_2348883800097885409_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGc5StXHGLeJDfa4I1tUPSmADh_h2_ETG8AOH-Hb8RMb0lbqacwO0BL2fwTq8Osk9vxEymcZNiv3bKcVKHwGaQB&_nc_ohc=WntiyFWBpbAQ7kNvwFTaYQ5&_nc_oc=Adnrd7wctwbpwWoEe5PCYvIpzLHl1UPJjR7syrTxesVVamZqk3tbRr1gDVWsj6H16QI&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=gR_d1WLLverM8oJbxuksng&oh=00_AfVlyi4-uR7NWw0KAJLF8sdZsDSd3f939EKHB2bJjmIV5g&oe=689E4469" 
-                 alt="Minh Thư 1">
-            <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/529697259_761270799819716_7170319545026756141_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEhvtkBAsGLdEALboZUYN9VYb07l614CYJhvTuXrXgJguSo3e0Nyv60O-etlxgg03wdX-04vdkq5YpYUnjb--4Q&_nc_ohc=1uUfjVYgVJMQ7kNvwGuERBd&_nc_oc=AdmTgim8O6AUO_5Dm8__Yx75cS7jJuURcO33MVfpcPii33Jc_XMK7ziyHjo6aDABHsg&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=RQAwqJvtc_W1cVSmGSwwaQ&oh=00_AfU3y8_QRRLMkOl_Bs_debK3Q5XJobDql7eww42PLccMpA&oe=689E2EFE" 
-                 alt="Minh Thư 2">
-            <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/529397682_761270646486398_8080666481101202403_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGzFc-zGef-5b8PAQ3r8SYaiMYQCwKhvhqIxhALAqG-GqylYXaZx18-t57Etvq4bJie8fDO0lVR6n5Uq9J7Pnw-&_nc_ohc=P4E-uUJInUYQ7kNvwG1if5C&_nc_oc=Adkv0iqQSsc3mi_Q8eutxZ9rKFL0w7bdGgpF9Ti_vABK6auY5gnVTErIwbnutaS_cig&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=A6I_8wbr-8wr1bWVymesAQ&oh=00_AfURzTf2E7z2nW-xrho0F_HnykM6klYlvugZwouu4mcSKQ&oe=689E4325" 
-                 alt="Minh Thư 3">
-            <img src="https://scontent.fvii1-1.fna.fbcdn.net/v/t39.30808-6/515316001_733710282575768_1529321483186552827_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeH1zxBHeRV4HAqmfwJ6oTOOnhEcguCqt0KeERyC4Kq3Qpf6GNZ7FXkSRfWpKll-YXJM0oAxgdzXCPvOxZcOxFxf&_nc_ohc=vzeDPPRWPscQ7kNvwFJ9Vvb&_nc_oc=Adn8nxtc9d2OvANAIu0uOfIVO8fF3wPjwCLbbAVMnB56CFCcKq6Vo0f316pVzIjCXk4&_nc_zt=23&_nc_ht=scontent.fvii1-1.fna&_nc_gid=sDmSLxfeF3Vs4kxe-O8crg&oh=00_AfQP61lNk6IgqzmRSL897sRytL1Fi0koFsXrbgVktAnDOA&oe=6894D3A9" 
-                 alt="Minh Thư 4">
-        </div>
-        
-        <div class="message">
-            <p>Gửi đến Minh Thư nhân ngày sinh nhật!</p>
-            
-            <p>💝 Chúc tuổi mới tràn ngập niềm vui</p>
-            <p>🌸 Luôn rạng rỡ như đóa hoa mai</p>
-            <p>🎀 Gặp nhiều may mắn và hạnh phúc</p>
-            <p>📚 Thành công trên con đường học vấn</p>
-            <p>👑 Mãi là cô gái tuyệt vời nhất</p>
-            
-            <p>Hãy luôn giữ nụ cười tươi tắn và trái tim ấm áp nhé!</p>
-        </div>
-        
-        <div class="signature">
-            Happy 16th Birthday! <span class="heart">❤️</span>
-        </div>
-    </div>
+
+  <div class="title">THEO DÕI THI ĐUA</div>
+  <p>Tổ: …… Tuần ….. (Từ ngày….. tháng….. năm….., ngày….. tháng….. năm……)</p>
+
+  <table>
+    <tr>
+      <th>Nội dung theo dõi</th>
+      <!-- Danh sách tên học sinh -->
+      <th>Thanh Trúc</th>
+      <th>Xuân Khởi</th>
+      <th>Khánh Ngọc</th>
+      <th>Thị Đức</th>
+      <th>Nhân Toàn</th>
+      <th>Công Dương</th>
+      <th>Ngọc Ánh</th>
+      <th>Hồng Hùng</th>
+      <th>Bị ghi sổ đầu bài</th>
+    </tr>
+    <!-- Các lỗi vi phạm theo hàng dọc -->
+    <tr>
+      <td>Nghỉ học</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Đi muộn</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Bài tập</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Dụng cụ</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Vệ sinh</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Nói chuyện</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Không học bài cũ</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Thiếu thẻ</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Những lỗi khác</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Điểm cộng</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Đổi chỗ ngồi</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <!-- Điểm tổng và xếp hạng -->
+    <tr>
+      <td>Điểm tổng</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Xếp hạng</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <!-- Thêm đánh giá -->
+    <tr>
+      <td colspan="10" style="text-align:left; padding:10px;">
+        <b>Đánh giá của tổ trưởng trong tuần vừa qua:</b><br>
+        <textarea placeholder="..........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................."></textarea>
+      </td>
+    </tr>
+  </table>
+
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bảng Theo Dõi Thi Đua</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid black;
+      text-align: center;
+      padding: 5px;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .signature {
+      width: 45%;
+      text-align: center;
+    }
+    .signature p {
+      margin: 10px 0;
+    }
+    textarea {
+      width: 98%;
+      height: 120px;
+      resize: vertical;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title">THEO DÕI THI ĐUA</div>
+  <p>Tổ: …… Tuần ….. (Từ ngày….. tháng….. năm….., ngày….. tháng….. năm……)</p>
+
+  <table>
+    <tr>
+      <th>Nội dung theo dõi</th>
+      <!-- Danh sách tên học sinh -->
+      <th>Huyền Ly</th>
+      <th>Văn Hùng</th>
+      <th>Thị Hiên</th>
+      <th>Bá Nhân</th>
+      <th>Nhật Nam</th>
+      <th>Công Tuấn</th>
+      <th>Quang Minh</th>
+      <th>Nhật Quang</th>
+      <th>Bị ghi sổ đầu bài</th>
+    </tr>
+    <!-- Các lỗi vi phạm theo hàng dọc -->
+    <tr>
+      <td>Nghỉ học</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Đi muộn</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Bài tập</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Dụng cụ</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Vệ sinh</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Nói chuyện</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Không học bài cũ</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Thiếu thẻ</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Những lỗi khác</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Điểm cộng</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Đổi chỗ ngồi</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <!-- Điểm tổng và xếp hạng -->
+    <tr>
+      <td>Điểm tổng</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+      <td>Xếp hạng</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <!-- Thêm đánh giá -->
+    <tr>
+      <td colspan="10" style="text-align:left; padding:10px;">
+        <b>Đánh giá của tổ trưởng trong tuần vừa qua:</b><br>
+         <textarea placeholder="..........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................."></textarea>
+      </td>
+    </tr>
+  </table>
+
+  
 </body>
 </html>
