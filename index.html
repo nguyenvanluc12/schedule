@@ -1,279 +1,331 @@
-
-      <!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Bảng Theo Dõi Thi Đua</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trò chơi học 100 cặp từ dễ nhầm - Học cùng nhạc</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 20px auto;
-    }
-    th, td {
-      border: 1px solid black;
-      text-align: center;
-      padding: 5px;
-    }
-    th {
-      background-color: #f0f0f0;
-    }
-    .title {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .signature {
-      width: 45%;
-      text-align: center;
-    }
-    .signature p {
-      margin: 10px 0;
-    }
-    textarea {
-      width: 98%;
-      height: 120px;
-      resize: vertical;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      padding: 8px;
-    }
+    :root{--bg:#0f172a;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--glass: rgba(255,255,255,0.03)}
+    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071124 0%,#07192a 60%);color:#e6eef6}
+    header{display:flex;gap:12px;align-items:center;padding:18px;}
+    h1{margin:0;font-size:18px}
+    .container{display:grid;grid-template-columns:320px 1fr;gap:18px;padding:18px}
+    .panel{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
+    .sidebar{height:calc(100vh - 84px);overflow:auto}
+    .controls button{margin:6px 6px 6px 0;padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:#042023;cursor:pointer}
+    .controls button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .modes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .mode{background:var(--glass);padding:8px;border-radius:8px;cursor:pointer}
+    main{height:calc(100vh - 84px);overflow:auto}
+    .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:12px;border-radius:10px}
+    .pair{display:flex;justify-content:space-between;gap:8px}
+    .big{font-size:22px}
+    footer{padding:12px;color:var(--muted);font-size:13px}
+    .quiz{display:grid;gap:12px}
+    .choices{display:flex;flex-direction:column;gap:8px}
+    .choice{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+    .choice.correct{outline:3px solid rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.5)}
+    .choice.wrong{outline:3px solid rgba(248,113,113,0.12);border-color:rgba(248,113,113,0.4)}
+    .topbar{display:flex;justify-content:space-between;gap:8px;align-items:center}
+    .search{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .small{font-size:13px;color:var(--muted)}
+    .player{border-radius:8px;overflow:hidden}
+    .hidden{display:none}
+    .flex{display:flex;gap:8px;align-items:center}
   </style>
 </head>
 <body>
+  <header>
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'><rect rx='8' width='36' height='36' fill='%2306b6d4'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%23081212'>T</text></svg>" alt="logo" style="width:44px;height:44px;border-radius:10px;"/>
+    <div>
+      <h1>Trò chơi: 100 cặp từ dễ nhầm — Học cùng nhạc</h1>
+      <div class="small">Chọn chế độ: Flashcard · Quiz · Ghép cặp · Danh sách</div>
+    </div>
+    <div style="margin-left:auto" class="flex">
+      <div class="player panel" style="padding:8px;min-width:340px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <div>
+            <div class="small">Nhạc nền</div>
+            <div id="trackTitle" class="small">YouTube — Nhấn để bật / tắt</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <button id="playBtn" class="secondary">Bật/Tắt</button>
+            <button id="muteBtn" class="secondary">Bật tiếng</button>
+          </div>
+        </div>
+        <div id="ytWrap" style="margin-top:8px;display:block">
+          <!-- iframe sẽ được chèn ở đây -->
+        </div>
+        <div class="small" style="margin-top:8px">Lưu ý: một số trình duyệt chặn autoplay âm thanh — nếu không nghe được, nhấn "Bật/Tắt" và "Bật tiếng".</div>
+      </div>
+    </div>
+  </header>
 
-  <div class="title">THEO DÕI THI ĐUA</div>
-  <p>Tổ: …… Tuần ….. (Từ ngày….. tháng….. năm….., ngày….. tháng….. năm……)</p>
+  <div class="container">
+    <aside class="sidebar panel">
+      <div class="topbar">
+        <input id="search" class="search" placeholder="Tìm từ (ví dụ: 'Chẩn đoán' hoặc 'Dành')" />
+      </div>
+      <div style="margin-top:10px" class="controls">
+        <button id="flashBtn">Flashcard</button>
+        <button id="quizBtn">Quiz</button>
+        <button id="matchBtn">Ghép cặp</button>
+        <button id="listBtn">Danh sách</button>
+        <button id="shuffleBtn" class="secondary">Trộn</button>
+        <button id="resetProgress" class="secondary">Xóa tiến độ</button>
+      </div>
 
-  <table>
-    <tr>
-      <th>Nội dung theo dõi</th>
-      <!-- Danh sách tên học sinh -->
-      <th>Thanh Trúc</th>
-      <th>Xuân Khởi</th>
-      <th>Khánh Ngọc</th>
-      <th>Thị Đức</th>
-      <th>Nhân Toàn</th>
-      <th>Công Dương</th>
-      <th>Ngọc Ánh</th>
-      <th>Hồng Hùng</th>
-      <th>Bị ghi sổ đầu bài</th>
-    </tr>
-    <!-- Các lỗi vi phạm theo hàng dọc -->
-    <tr>
-      <td>Nghỉ học</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Đi muộn</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Bài tập</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Dụng cụ</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Vệ sinh</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Nói chuyện</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Không học bài cũ</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Thiếu thẻ</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Những lỗi khác</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Điểm cộng</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Đổi chỗ ngồi</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <!-- Điểm tổng và xếp hạng -->
-    <tr>
-      <td>Điểm tổng</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Xếp hạng</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <!-- Thêm đánh giá -->
-    <tr>
-      <td colspan="10" style="text-align:left; padding:10px;">
-        <b>Đánh giá của tổ trưởng trong tuần vừa qua:</b><br>
-        <textarea placeholder="..........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................."></textarea>
-      </td>
-    </tr>
-  </table>
+      <div style="margin-top:12px">
+        <div class="small">Tiến độ</div>
+        <div id="progress" class="small">Đã trả lời: 0 / 100</div>
+      </div>
 
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0"/>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>Bảng Theo Dõi Thi Đua</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 20px auto;
-    }
-    th, td {
-      border: 1px solid black;
-      text-align: center;
-      padding: 5px;
-    }
-    th {
-      background-color: #f0f0f0;
-    }
-    .title {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .signature {
-      width: 45%;
-      text-align: center;
-    }
-    .signature p {
-      margin: 10px 0;
-    }
-    textarea {
-      width: 98%;
-      height: 120px;
-      resize: vertical;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      padding: 8px;
-    }
-  </style>
-</head>
-<body>
+      <div class="small">Chế độ học</div>
+      <div class="modes">
+        <div class="mode" data-mode="easy">Dễ</div>
+        <div class="mode" data-mode="normal">Bình thường</div>
+        <div class="mode" data-mode="hard">Khó</div>
+      </div>
 
-  <div class="title">THEO DÕI THI ĐUA</div>
-  <p>Tổ: …… Tuần ….. (Từ ngày….. tháng….. năm….., ngày….. tháng….. năm……)</p>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0"/>
 
-  <table>
-    <tr>
-      <th>Nội dung theo dõi</th>
-      <!-- Danh sách tên học sinh -->
-      <th>Huyền Ly</th>
-      <th>Văn Hùng</th>
-      <th>Thị Hiên</th>
-      <th>Bá Nhân</th>
-      <th>Nhật Nam</th>
-      <th>Công Tuấn</th>
-      <th>Quang Minh</th>
-      <th>Nhật Quang</th>
-      <th>Bị ghi sổ đầu bài</th>
-    </tr>
-    <!-- Các lỗi vi phạm theo hàng dọc -->
-    <tr>
-      <td>Nghỉ học</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Đi muộn</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Bài tập</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Dụng cụ</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Vệ sinh</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Nói chuyện</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Không học bài cũ</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Thiếu thẻ</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Những lỗi khác</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Điểm cộng</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Đổi chỗ ngồi</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <!-- Điểm tổng và xếp hạng -->
-    <tr>
-      <td>Điểm tổng</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-      <td>Xếp hạng</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <!-- Thêm đánh giá -->
-    <tr>
-      <td colspan="10" style="text-align:left; padding:10px;">
-        <b>Đánh giá của tổ trưởng trong tuần vừa qua:</b><br>
-         <textarea placeholder="..........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................."></textarea>
-      </td>
-    </tr>
-  </table>
+      <div class="small">Gợi ý</div>
+      <ul class="small">
+        <li>Flashcard: xem từng cặp, bấm "Hiển thị" để thấy nghĩa & ví dụ</li>
+        <li>Quiz: chọn nghĩa đúng hoặc chọn từ đúng</li>
+        <li>Ghép cặp: ghép cặp 2 cột từ trái/phải</li>
+      </ul>
 
-  
+    </aside>
+
+    <main>
+      <div id="app" class="panel">
+        <!-- nội dung thay đổi theo chế độ -->
+        <div id="modeArea"></div>
+      </div>
+
+      <footer class="panel" style="margin-top:12px">
+        <div class="small">File này có: 100 cặp từ dễ nhầm (tiếng Việt). Dùng cho học, ôn tập, kiểm tra. Lưu trữ tiến độ bằng localStorage.</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Dữ liệu: 100 cặp từ (từ A và từ B)
+    const pairs = [
+      ['Chẩn đoán','Chuẩn đoán'],['Sát nhập','Sáp nhập'],['Thăm quan','Tham quan'],['Truyền thuyết','Truyện thuyết'],['Hòa nhập','Hội nhập'],
+      ['Bàng quang','Bàng quan'],['Sát hạch','Sáp hạch'],['Xán lạn','Sáng lạng'],['Xã tắc','Xã hội'],['Bàng hoàng','Bàng quan'],
+      ['Dành dụm','Dành giụm'],['Giành','Dành'],['Duyệt binh','Diễu binh'],['Hỏa hoạn','Hỏa hoàng'],['Lẩn tránh','Lãng tránh'],
+      ['Trăn trở','Trằn trọc'],['Lãng phí','Lãn phí'],['Lãnh đạm','Lảnh đạm'],['Lãnh đạo','Lảnh đạo'],['Lãnh thổ','Lảnh thổ'],
+      ['Truyền hình','Truyền thanh'],['Trải nghiệm','Trãi nghiệm'],['Trải qua','Trãi qua'],['Giữ','Giử'],['Kỷ niệm','Kỉ niệm'],
+      ['Chữ','Chử'],['Xem xét','Xét xem'],['Trái ngược','Ngược lại'],['Cảm ơn','Cám ơn'],['Thăm dò','Thám dò'],
+      ['Thăm khám','Khám bệnh'],['Xinh đẹp','Sinh đẹp'],['Giành giật','Dành giật'],['Dành cho','Giành cho'],['Nhầm','Lầm'],
+      ['Thỏa thuận','Thoả hiệp'],['Thỏa mãn','Mãn nguyện'],['Trọng điểm','Điểm trọng yếu'],['Trọng lượng','Khối lượng'],['Nghiêm trọng','Quan trọng'],
+      ['Sát thủ','Sát nhân'],['Tận hưởng','Hưởng thụ'],['Tận dụng','Lợi dụng'],['Sử dụng','Áp dụng'],['Bổ sung','Bổ xung'],
+      ['Cập nhật','Cập nhựt'],['Chính tả','Chỉnh tả'],['Thất bại','Thất thủ'],['Phát minh','Phát hiện'],['Cảm giác','Cảm xúc'],
+      ['Khởi xướng','Khởi đầu'],['Trọng trách','Nhiệm vụ'],['Ảnh hưởng','Tác động'],['Trực quan','Trực tiếp'],['Thông minh','Khôn ngoan'],
+      ['Giả vờ','Giả bộ'],['Giả thiết','Giả thuyết'],['Lịch sự','Lễ phép'],['Hào hứng','Hứng khởi'],['Hào hoa','Hào nhoáng'],
+      ['Hùng vĩ','Hùng mạnh'],['Tinh vi','Tinh xảo'],['Tinh tế','Tinh vi'],['Xúc tiến','Thúc đẩy'],['Xúc phạm','Lăng mạ'],
+      ['Cám dỗ','Quyến rũ'],['Lãnh cảm','Lạnh nhạt'],['Chân thành','Thành thật'],['Chân thực','Trung thực'],['Kiên nhẫn','Nhẫn nại'],
+      ['Kiên cường','Dũng cảm'],['Kiên quyết','Quyết liệt'],['Quyết định','Phán quyết'],['Quản trị','Quản lý'],['Quản thúc','Giam lỏng'],
+      ['Quản giáo','Quản chế'],['Nghiêm minh','Nghiêm khắc'],['Khắt khe','Khắt khổ'],['Khó khăn','Khốn khổ'],['Khốn nạn','Khốn cùng'],
+      ['Nguy cơ','Nguy hiểm'],['Nguy hại','Nguy hiểm'],['Mạo hiểm','Liều lĩnh'],['Liều thuốc','Liều lượng'],['Cường độ','Mức độ'],
+      ['Cường quốc','Cường hào'],['Cường điệu','Khoa trương'],['Khoa học','Khoa học kỹ thuật'],['Công nghệ','Kỹ thuật'],['Cấu trúc','Kết cấu'],
+      ['Kết quả','Hệ quả'],['Hậu quả','Tác hại'],['Hiệu quả','Kết quả']
+    ];
+
+    // App state
+    let state = {
+      mode: 'flash',
+      idx: 0,
+      order: [...Array(pairs.length).keys()],
+      progress: JSON.parse(localStorage.getItem('progress_v1')||'{}')
+    };
+
+    // YouTube track provided by user
+    const ytUrl = 'https://www.youtube.com/embed/HaIjR05n1Vc?rel=0&autoplay=1&controls=1&mute=1';
+
+    // Init
+    const modeArea = document.getElementById('modeArea');
+    const progressEl = document.getElementById('progress');
+    const searchEl = document.getElementById('search');
+
+    function render() {
+      updateProgress();
+      if(state.mode==='flash') renderFlash();
+      else if(state.mode==='quiz') renderQuiz();
+      else if(state.mode==='match') renderMatch();
+      else if(state.mode==='list') renderList();
+    }
+
+    function updateProgress(){
+      const done = Object.keys(state.progress).length;
+      progressEl.textContent = `Đã trả lời: ${done} / ${pairs.length}`;
+    }
+
+    // FLASHCARD
+    function renderFlash(){
+      const i = state.order[state.idx]||0;
+      const [a,b] = pairs[i];
+      modeArea.innerHTML = `
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="small">Flashcard ${state.idx+1} / ${pairs.length}</div>
+              <div class="big">${a} — ${b}</div>
+            </div>
+            <div>
+              <button id="showExample" class="secondary">Hiển thị</button>
+              <button id="next" class="secondary">Tiếp</button>
+            </div>
+          </div>
+          <div id="extra" style="margin-top:12px" class="small hidden"></div>
+        </div>
+      `;
+      document.getElementById('showExample').onclick = ()=>{
+        const ex = `Ví dụ: "${a}" và "${b}" là hai cách viết / nghĩa khác nhau — hãy ghi nhớ ngữ cảnh.`;
+        document.getElementById('extra').textContent = ex;
+        document.getElementById('extra').classList.remove('hidden');
+      }
+      document.getElementById('next').onclick = ()=>{
+        state.idx = (state.idx+1)%pairs.length; render();
+      }
+    }
+
+    // QUIZ
+    function renderQuiz(){
+      // choose random pair and 3 distractors
+      const i = state.order[Math.floor(Math.random()*state.order.length)];
+      const [a,b] = pairs[i];
+      const choices = new Set([b]);
+      while(choices.size<4){
+        const j = pairs[Math.floor(Math.random()*pairs.length)][1];
+        choices.add(j);
+      }
+      const choiceArr = shuffle(Array.from(choices));
+      modeArea.innerHTML = `
+        <div class="quiz card">
+          <div class="small">Câu hỏi: Từ đúng tương ứng với "<strong>${a}</strong>" là?</div>
+          <div class="choices" id="choices"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <div class="small">Điểm: ${Object.keys(state.progress).length}</div>
+            <div><button id="nextq" class="secondary">Câu khác</button></div>
+          </div>
+        </div>
+      `;
+      const choicesWrap = document.getElementById('choices');
+      choiceArr.forEach(c=>{
+        const el = document.createElement('div'); el.className='choice'; el.textContent=c; choicesWrap.appendChild(el);
+        el.onclick = ()=>{
+          if(c===b){ el.classList.add('correct'); state.progress[i]=true; localStorage.setItem('progress_v1', JSON.stringify(state.progress)); }
+          else{ el.classList.add('wrong'); }
+          Array.from(choicesWrap.children).forEach(ch=>ch.onclick=null);
+          updateProgress();
+        }
+      });
+      document.getElementById('nextq').onclick = ()=>renderQuiz();
+    }
+
+    // MATCH (simple drag & drop)
+    function renderMatch(){
+      const left = shuffle(state.order.slice(0,Math.min(12,state.order.length))).map(i=>pairs[i][0]);
+      const right = shuffle(left.map(x=>{ // find corresponding b
+        const idx = pairs.findIndex(p=>p[0]===x); return pairs[idx][1];
+      }));
+      modeArea.innerHTML = `
+        <div class="card">
+          <div class="small">Kéo và thả để ghép cặp</div>
+          <div style="display:flex;gap:12px;margin-top:12px">
+            <div style="flex:1">
+              <div class="small">Từ trái</div>
+              <div id="leftCol"></div>
+            </div>
+            <div style="flex:1">
+              <div class="small">Từ phải</div>
+              <div id="rightCol"></div>
+            </div>
+          </div>
+        </div>
+      `;
+      const leftCol = document.getElementById('leftCol'); const rightCol = document.getElementById('rightCol');
+      left.forEach((t,idx)=>{
+        const el = document.createElement('div'); el.className='card'; el.style.margin='6px 0'; el.draggable=true; el.textContent=t; el.dataset.key=t; leftCol.appendChild(el);
+        el.ondragstart = (e)=>{ e.dataTransfer.setData('text/plain', t); }
+      });
+      right.forEach(t=>{
+        const el = document.createElement('div'); el.className='card'; el.style.margin='6px 0'; el.textContent=t; el.dataset.key=t; rightCol.appendChild(el);
+        el.ondragover = (e)=>e.preventDefault();
+        el.ondrop = (e)=>{
+          const from = e.dataTransfer.getData('text/plain');
+          const idxLeft = pairs.findIndex(p=>p[0]===from);
+          const correct = pairs[idxLeft][1]===t;
+          if(correct){ el.style.border='2px solid rgba(34,197,94,0.6)'; state.progress[idxLeft]=true; localStorage.setItem('progress_v1', JSON.stringify(state.progress)); updateProgress(); }
+          else{ el.style.border='2px solid rgba(248,113,113,0.45)'; }
+        }
+      });
+    }
+
+    // LIST
+    function renderList(){
+      const q = searchEl.value.trim().toLowerCase();
+      const rows = pairs.map((p,i)=>({i,a:p[0],b:p[1]})).filter(r=>!q||r.a.toLowerCase().includes(q)||r.b.toLowerCase().includes(q));
+      modeArea.innerHTML = `
+        <div class="card">
+          <div class="small">Danh sách (tìm: "${q}")</div>
+          <div style="margin-top:12px">
+            ${rows.map(r=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid rgba(255,255,255,0.02)"><div>${r.a}</div><div class="small">${r.b}</div></div>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // Utils
+    function shuffle(a){
+      for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+      return a;
+    }
+
+    // Controls
+    document.getElementById('flashBtn').onclick = ()=>{ state.mode='flash'; render(); }
+    document.getElementById('quizBtn').onclick = ()=>{ state.mode='quiz'; render(); }
+    document.getElementById('matchBtn').onclick = ()=>{ state.mode='match'; render(); }
+    document.getElementById('listBtn').onclick = ()=>{ state.mode='list'; render(); }
+    document.getElementById('shuffleBtn').onclick = ()=>{ state.order = shuffle(state.order); state.idx=0; render(); }
+    document.getElementById('resetProgress').onclick = ()=>{ state.progress={}; localStorage.removeItem('progress_v1'); updateProgress(); }
+
+    searchEl.addEventListener('input', ()=>{ if(state.mode==='list') renderList(); });
+
+    // YouTube embed & controls
+    const ytWrap = document.getElementById('ytWrap');
+    let ytIframe = null; let muted=true; let playing=false;
+    function createIframe(){
+      ytWrap.innerHTML = '';
+      ytIframe = document.createElement('iframe');
+      ytIframe.width = '320'; ytIframe.height='180'; ytIframe.className='player';
+      ytIframe.src = ytUrl; ytIframe.allow = 'autoplay; encrypted-media; picture-in-picture'; ytWrap.appendChild(ytIframe);
+    }
+    createIframe();
+
+    const playBtn = document.getElementById('playBtn'); const muteBtn=document.getElementById('muteBtn');
+    playBtn.onclick = ()=>{
+      // recreate iframe to trigger autoplay (some browsers require user gesture)
+      createIframe();
+      playing = !playing; playBtn.textContent = playing? 'Tắt' : 'Bật/Tắt';
+    }
+    muteBtn.onclick = ()=>{
+      muted = !muted;
+      // reload iframe with mute param
+      const m = muted?1:0;
+      ytIframe.src = 'https://www.youtube.com/embed/HaIjR05n1Vc?rel=0&autoplay=1&controls=1&mute='+m;
+      muteBtn.textContent = muted? 'Bật tiếng' : 'Tắt tiếng';
+    }
+
+    // init
+    render();
+  </script>
 </body>
 </html>
