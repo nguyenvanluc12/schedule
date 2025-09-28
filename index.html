@@ -3,328 +3,118 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Trò chơi học 100 cặp từ dễ nhầm - Học cùng nhạc</title>
+  <title>Học 100 cặp từ dễ nhầm</title>
   <style>
-    :root{--bg:#0f172a;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--glass: rgba(255,255,255,0.03)}
-    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
-    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071124 0%,#07192a 60%);color:#e6eef6}
-    header{display:flex;gap:12px;align-items:center;padding:18px;}
-    h1{margin:0;font-size:18px}
-    .container{display:grid;grid-template-columns:320px 1fr;gap:18px;padding:18px}
-    .panel{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 24px rgba(2,6,23,0.6)}
-    .sidebar{height:calc(100vh - 84px);overflow:auto}
-    .controls button{margin:6px 6px 6px 0;padding:8px 10px;border-radius:8px;border:0;background:var(--accent);color:#042023;cursor:pointer}
-    .controls button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-    .modes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .mode{background:var(--glass);padding:8px;border-radius:8px;cursor:pointer}
-    main{height:calc(100vh - 84px);overflow:auto}
-    .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:12px;border-radius:10px}
-    .pair{display:flex;justify-content:space-between;gap:8px}
-    .big{font-size:22px}
-    footer{padding:12px;color:var(--muted);font-size:13px}
-    .quiz{display:grid;gap:12px}
-    .choices{display:flex;flex-direction:column;gap:8px}
-    .choice{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
-    .choice.correct{outline:3px solid rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.5)}
-    .choice.wrong{outline:3px solid rgba(248,113,113,0.12);border-color:rgba(248,113,113,0.4)}
-    .topbar{display:flex;justify-content:space-between;gap:8px;align-items:center}
-    .search{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    .small{font-size:13px;color:var(--muted)}
-    .player{border-radius:8px;overflow:hidden}
-    .hidden{display:none}
-    .flex{display:flex;gap:8px;align-items:center}
+    body { margin:0; font-family: sans-serif; background:#f7f9fc; color:#222; }
+    header { background:#06b6d4; color:#fff; padding:12px 16px; text-align:center; }
+    h1 { margin:0; font-size:20px; }
+    .container { padding:16px; max-width:800px; margin:0 auto; }
+    .controls { text-align:center; margin-bottom:16px; }
+    .controls button { margin:4px; padding:8px 12px; border:none; border-radius:6px; cursor:pointer; background:#06b6d4; color:#fff; }
+    .controls button.secondary { background:#ddd; color:#333; }
+    .card { background:#fff; border-radius:8px; padding:12px; margin-bottom:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    .big { font-size:20px; margin-bottom:8px; }
+    .small { font-size:14px; color:#555; }
+    iframe { width:100%; max-width:560px; height:315px; border:none; border-radius:8px; margin:12px auto; display:block; }
+    .choice { padding:8px; border:1px solid #ccc; border-radius:6px; margin:6px 0; cursor:pointer; }
+    .choice.correct { background:#d1fae5; border-color:#10b981; }
+    .choice.wrong { background:#fee2e2; border-color:#ef4444; }
   </style>
 </head>
 <body>
   <header>
-    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'><rect rx='8' width='36' height='36' fill='%2306b6d4'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='18' fill='%23081212'>T</text></svg>" alt="logo" style="width:44px;height:44px;border-radius:10px;"/>
-    <div>
-      <h1>Trò chơi: 100 cặp từ dễ nhầm — Học cùng nhạc</h1>
-      <div class="small">Chọn chế độ: Flashcard · Quiz · Ghép cặp · Danh sách</div>
-    </div>
-    <div style="margin-left:auto" class="flex">
-      <div class="player panel" style="padding:8px;min-width:340px">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-          <div>
-            <div class="small">Nhạc nền</div>
-            <div id="trackTitle" class="small">YouTube — Nhấn để bật / tắt</div>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center">
-            <button id="playBtn" class="secondary">Bật/Tắt</button>
-            <button id="muteBtn" class="secondary">Bật tiếng</button>
-          </div>
-        </div>
-        <div id="ytWrap" style="margin-top:8px;display:block">
-          <!-- iframe sẽ được chèn ở đây -->
-        </div>
-        <div class="small" style="margin-top:8px">Lưu ý: một số trình duyệt chặn autoplay âm thanh — nếu không nghe được, nhấn "Bật/Tắt" và "Bật tiếng".</div>
-      </div>
-    </div>
+    <h1>Học 100 cặp từ dễ nhầm</h1>
+    <div class="small">Có thể bật nhạc để vừa học vừa thư giãn</div>
   </header>
 
   <div class="container">
-    <aside class="sidebar panel">
-      <div class="topbar">
-        <input id="search" class="search" placeholder="Tìm từ (ví dụ: 'Chẩn đoán' hoặc 'Dành')" />
-      </div>
-      <div style="margin-top:10px" class="controls">
-        <button id="flashBtn">Flashcard</button>
-        <button id="quizBtn">Quiz</button>
-        <button id="matchBtn">Ghép cặp</button>
-        <button id="listBtn">Danh sách</button>
-        <button id="shuffleBtn" class="secondary">Trộn</button>
-        <button id="resetProgress" class="secondary">Xóa tiến độ</button>
-      </div>
+    <div style="text-align:center">
+      <iframe id="yt" src="https://www.youtube.com/embed/HaIjR05n1Vc?rel=0&autoplay=0&controls=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
 
-      <div style="margin-top:12px">
-        <div class="small">Tiến độ</div>
-        <div id="progress" class="small">Đã trả lời: 0 / 100</div>
-      </div>
+    <div class="controls">
+      <button id="flashBtn">Flashcard</button>
+      <button id="quizBtn">Quiz</button>
+      <button id="listBtn">Danh sách</button>
+    </div>
 
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0"/>
-
-      <div class="small">Chế độ học</div>
-      <div class="modes">
-        <div class="mode" data-mode="easy">Dễ</div>
-        <div class="mode" data-mode="normal">Bình thường</div>
-        <div class="mode" data-mode="hard">Khó</div>
-      </div>
-
-      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0"/>
-
-      <div class="small">Gợi ý</div>
-      <ul class="small">
-        <li>Flashcard: xem từng cặp, bấm "Hiển thị" để thấy nghĩa & ví dụ</li>
-        <li>Quiz: chọn nghĩa đúng hoặc chọn từ đúng</li>
-        <li>Ghép cặp: ghép cặp 2 cột từ trái/phải</li>
-      </ul>
-
-    </aside>
-
-    <main>
-      <div id="app" class="panel">
-        <!-- nội dung thay đổi theo chế độ -->
-        <div id="modeArea"></div>
-      </div>
-
-      <footer class="panel" style="margin-top:12px">
-        <div class="small">File này có: 100 cặp từ dễ nhầm (tiếng Việt). Dùng cho học, ôn tập, kiểm tra. Lưu trữ tiến độ bằng localStorage.</div>
-      </footer>
-    </main>
+    <div id="app"></div>
   </div>
 
   <script>
-    // Dữ liệu: 100 cặp từ (từ A và từ B)
     const pairs = [
       ['Chẩn đoán','Chuẩn đoán'],['Sát nhập','Sáp nhập'],['Thăm quan','Tham quan'],['Truyền thuyết','Truyện thuyết'],['Hòa nhập','Hội nhập'],
-      ['Bàng quang','Bàng quan'],['Sát hạch','Sáp hạch'],['Xán lạn','Sáng lạng'],['Xã tắc','Xã hội'],['Bàng hoàng','Bàng quan'],
-      ['Dành dụm','Dành giụm'],['Giành','Dành'],['Duyệt binh','Diễu binh'],['Hỏa hoạn','Hỏa hoàng'],['Lẩn tránh','Lãng tránh'],
-      ['Trăn trở','Trằn trọc'],['Lãng phí','Lãn phí'],['Lãnh đạm','Lảnh đạm'],['Lãnh đạo','Lảnh đạo'],['Lãnh thổ','Lảnh thổ'],
-      ['Truyền hình','Truyền thanh'],['Trải nghiệm','Trãi nghiệm'],['Trải qua','Trãi qua'],['Giữ','Giử'],['Kỷ niệm','Kỉ niệm'],
-      ['Chữ','Chử'],['Xem xét','Xét xem'],['Trái ngược','Ngược lại'],['Cảm ơn','Cám ơn'],['Thăm dò','Thám dò'],
-      ['Thăm khám','Khám bệnh'],['Xinh đẹp','Sinh đẹp'],['Giành giật','Dành giật'],['Dành cho','Giành cho'],['Nhầm','Lầm'],
-      ['Thỏa thuận','Thoả hiệp'],['Thỏa mãn','Mãn nguyện'],['Trọng điểm','Điểm trọng yếu'],['Trọng lượng','Khối lượng'],['Nghiêm trọng','Quan trọng'],
-      ['Sát thủ','Sát nhân'],['Tận hưởng','Hưởng thụ'],['Tận dụng','Lợi dụng'],['Sử dụng','Áp dụng'],['Bổ sung','Bổ xung'],
-      ['Cập nhật','Cập nhựt'],['Chính tả','Chỉnh tả'],['Thất bại','Thất thủ'],['Phát minh','Phát hiện'],['Cảm giác','Cảm xúc'],
-      ['Khởi xướng','Khởi đầu'],['Trọng trách','Nhiệm vụ'],['Ảnh hưởng','Tác động'],['Trực quan','Trực tiếp'],['Thông minh','Khôn ngoan'],
-      ['Giả vờ','Giả bộ'],['Giả thiết','Giả thuyết'],['Lịch sự','Lễ phép'],['Hào hứng','Hứng khởi'],['Hào hoa','Hào nhoáng'],
-      ['Hùng vĩ','Hùng mạnh'],['Tinh vi','Tinh xảo'],['Tinh tế','Tinh vi'],['Xúc tiến','Thúc đẩy'],['Xúc phạm','Lăng mạ'],
-      ['Cám dỗ','Quyến rũ'],['Lãnh cảm','Lạnh nhạt'],['Chân thành','Thành thật'],['Chân thực','Trung thực'],['Kiên nhẫn','Nhẫn nại'],
-      ['Kiên cường','Dũng cảm'],['Kiên quyết','Quyết liệt'],['Quyết định','Phán quyết'],['Quản trị','Quản lý'],['Quản thúc','Giam lỏng'],
-      ['Quản giáo','Quản chế'],['Nghiêm minh','Nghiêm khắc'],['Khắt khe','Khắt khổ'],['Khó khăn','Khốn khổ'],['Khốn nạn','Khốn cùng'],
-      ['Nguy cơ','Nguy hiểm'],['Nguy hại','Nguy hiểm'],['Mạo hiểm','Liều lĩnh'],['Liều thuốc','Liều lượng'],['Cường độ','Mức độ'],
-      ['Cường quốc','Cường hào'],['Cường điệu','Khoa trương'],['Khoa học','Khoa học kỹ thuật'],['Công nghệ','Kỹ thuật'],['Cấu trúc','Kết cấu'],
-      ['Kết quả','Hệ quả'],['Hậu quả','Tác hại'],['Hiệu quả','Kết quả']
+      ['Bàng quang','Bàng quan'],['Xán lạn','Sáng lạng'],['Trăn trở','Trằn trọc'],['Lãng phí','Lãn phí'],['Lãnh đạm','Lảnh đạm'],
+      ['Trải nghiệm','Trãi nghiệm'],['Giữ','Giử'],['Kỷ niệm','Kỉ niệm'],['Cảm ơn','Cám ơn'],['Giành','Dành'],
+      ['Giả thiết','Giả thuyết'],['Lịch sự','Lễ phép'],['Hào hứng','Hứng khởi'],['Tinh vi','Tinh xảo'],['Xúc phạm','Lăng mạ'],
+      ['Chân thành','Thành thật'],['Kiên nhẫn','Nhẫn nại'],['Kiên quyết','Quyết liệt'],['Quản trị','Quản lý'],['Nguy cơ','Nguy hiểm'],
+      ['Mạo hiểm','Liều lĩnh'],['Cường điệu','Khoa trương'],['Công nghệ','Kỹ thuật'],['Kết quả','Hệ quả'],['Hậu quả','Tác hại'],
+      ['Hiệu quả','Kết quả'],['Lãng mạn','Lạn mạn'],['Nghiêm túc','Nghiêm trọng'],['Kinh ngạc','Ngạc nhiên'],['Trân trọng','Chân trọng'],
+      ['Cẩn thận','Cẩn trọng'],['Độc đáo','Đặc sắc'],['Chính xác','Chuẩn xác'],['Tự tin','Tự kiêu'],['Biểu hiện','Biểu hiện ra'],
+      ['Lãng quên','Quên lãng'],['Kỹ năng','Kĩ năng'],['Khát vọng','Mong muốn'],['Chính trị','Chánh trị'],['Khởi động','Khởi hành'],
+      ['Chung thủy','Trung thủy'],['Nghi ngờ','Ngờ vực'],['Kỹ lưỡng','Kĩ lưỡng'],['Mâu thuẫn','Mâu thuẩn'],['Hấp dẫn','Lôi cuốn'],
+      ['Khẳng định','Xác nhận'],['Sáng tạo','Sáng tác'],['Cầu kỳ','Cầu kì'],['Hoàn chỉnh','Hoàn thiện'],['Chính thức','Chánh thức'],
+      ['Linh hoạt','Uyển chuyển'],['Thực tế','Thực tiễn'],['Văn hóa','Văn hoá'],['Thuyết phục','Thuyết trình'],['Giới hạn','Hạn chế'],
+      ['Chính đáng','Chánh đáng'],['Khó khăn','Trở ngại'],['Cụ thể','Chi tiết'],['Thân thiện','Thân ái'],['Hoàn hảo','Hoàn mỹ'],
+      ['Truyền cảm','Cảm hứng'],['Ngẫu nhiên','Tình cờ'],['Bắt buộc','Cưỡng chế'],['Tập trung','Chú tâm'],['Đơn giản','Giản dị'],
+      ['Khác biệt','Sai khác'],['Đặc biệt','Đặc thù'],['Kỳ vọng','Hy vọng'],['Thích thú','Hứng thú'],['Hào phóng','Phóng khoáng'],
+      ['Chung kết','Trung kết'],['Khẩn trương','Khẩn cấp'],['Ngăn ngừa','Phòng tránh'],['Khôi hài','Hài hước'],['Chính tâm','Chánh tâm'],
+      ['Thành công','Thành đạt'],['Tận dụng','Lợi dụng'],['Tận tình','Hết lòng'],['Nghiêm khắc','Khắt khe'],['Đồng ý','Tán thành'],
+      ['Cố gắng','Nỗ lực'],['Thuyền trưởng','Thuyền trưởng (sai chính tả: thuyền trưỡng)'],['Đặc biệt','Đặc dị'],['Nguy hiểm','Hiểm nguy'],['Khó chịu','Bực bội'],
+      ['Lương thiện','Thiện lương'],['Chính xác','Xác thực'],['Khôn ngoan','Thông minh'],['Khéo léo','Tinh tế'],['Chân thật','Thật thà'],
+      ['Công bằng','Bình đẳng'],['Khả năng','Năng lực'],['Trách nhiệm','Nhiệm vụ'],['Cơ hội','Thời cơ'],['Niềm tin','Tín nhiệm']
     ];
 
-    // App state
-    let state = {
-      mode: 'flash',
-      idx: 0,
-      order: [...Array(pairs.length).keys()],
-      progress: JSON.parse(localStorage.getItem('progress_v1')||'{}')
-    };
-
-    // YouTube track provided by user
-    const ytUrl = 'https://www.youtube.com/embed/HaIjR05n1Vc?rel=0&autoplay=1&controls=1&mute=1';
-
-    // Init
-    const modeArea = document.getElementById('modeArea');
-    const progressEl = document.getElementById('progress');
-    const searchEl = document.getElementById('search');
+    let mode = 'flash';
+    let idx = 0;
 
     function render() {
-      updateProgress();
-      if(state.mode==='flash') renderFlash();
-      else if(state.mode==='quiz') renderQuiz();
-      else if(state.mode==='match') renderMatch();
-      else if(state.mode==='list') renderList();
+      if(mode==='flash') renderFlash();
+      else if(mode==='quiz') renderQuiz();
+      else if(mode==='list') renderList();
     }
 
-    function updateProgress(){
-      const done = Object.keys(state.progress).length;
-      progressEl.textContent = `Đã trả lời: ${done} / ${pairs.length}`;
-    }
-
-    // FLASHCARD
     function renderFlash(){
-      const i = state.order[state.idx]||0;
-      const [a,b] = pairs[i];
-      modeArea.innerHTML = `
+      const [a,b] = pairs[idx];
+      document.getElementById('app').innerHTML = `
         <div class="card">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div class="small">Flashcard ${state.idx+1} / ${pairs.length}</div>
-              <div class="big">${a} — ${b}</div>
-            </div>
-            <div>
-              <button id="showExample" class="secondary">Hiển thị</button>
-              <button id="next" class="secondary">Tiếp</button>
-            </div>
-          </div>
-          <div id="extra" style="margin-top:12px" class="small hidden"></div>
+          <div class="big">${a} — ${b}</div>
+          <div class="small">Flashcard ${idx+1} / ${pairs.length}</div>
+          <button onclick="nextFlash()" class="secondary">Tiếp</button>
         </div>
       `;
-      document.getElementById('showExample').onclick = ()=>{
-        const ex = `Ví dụ: "${a}" và "${b}" là hai cách viết / nghĩa khác nhau — hãy ghi nhớ ngữ cảnh.`;
-        document.getElementById('extra').textContent = ex;
-        document.getElementById('extra').classList.remove('hidden');
-      }
-      document.getElementById('next').onclick = ()=>{
-        state.idx = (state.idx+1)%pairs.length; render();
-      }
     }
+    function nextFlash(){ idx=(idx+1)%pairs.length; render(); }
 
-    // QUIZ
     function renderQuiz(){
-      // choose random pair and 3 distractors
-      const i = state.order[Math.floor(Math.random()*state.order.length)];
+      const i = Math.floor(Math.random()*pairs.length);
       const [a,b] = pairs[i];
-      const choices = new Set([b]);
-      while(choices.size<4){
-        const j = pairs[Math.floor(Math.random()*pairs.length)][1];
-        choices.add(j);
+      let choices = [b];
+      while(choices.length<4){
+        const r = pairs[Math.floor(Math.random()*pairs.length)][1];
+        if(!choices.includes(r)) choices.push(r);
       }
-      const choiceArr = shuffle(Array.from(choices));
-      modeArea.innerHTML = `
-        <div class="quiz card">
-          <div class="small">Câu hỏi: Từ đúng tương ứng với "<strong>${a}</strong>" là?</div>
-          <div class="choices" id="choices"></div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <div class="small">Điểm: ${Object.keys(state.progress).length}</div>
-            <div><button id="nextq" class="secondary">Câu khác</button></div>
-          </div>
-        </div>
-      `;
-      const choicesWrap = document.getElementById('choices');
-      choiceArr.forEach(c=>{
-        const el = document.createElement('div'); el.className='choice'; el.textContent=c; choicesWrap.appendChild(el);
-        el.onclick = ()=>{
-          if(c===b){ el.classList.add('correct'); state.progress[i]=true; localStorage.setItem('progress_v1', JSON.stringify(state.progress)); }
-          else{ el.classList.add('wrong'); }
-          Array.from(choicesWrap.children).forEach(ch=>ch.onclick=null);
-          updateProgress();
-        }
-      });
-      document.getElementById('nextq').onclick = ()=>renderQuiz();
-    }
-
-    // MATCH (simple drag & drop)
-    function renderMatch(){
-      const left = shuffle(state.order.slice(0,Math.min(12,state.order.length))).map(i=>pairs[i][0]);
-      const right = shuffle(left.map(x=>{ // find corresponding b
-        const idx = pairs.findIndex(p=>p[0]===x); return pairs[idx][1];
-      }));
-      modeArea.innerHTML = `
+      choices = choices.sort(()=>Math.random()-0.5);
+      document.getElementById('app').innerHTML = `
         <div class="card">
-          <div class="small">Kéo và thả để ghép cặp</div>
-          <div style="display:flex;gap:12px;margin-top:12px">
-            <div style="flex:1">
-              <div class="small">Từ trái</div>
-              <div id="leftCol"></div>
-            </div>
-            <div style="flex:1">
-              <div class="small">Từ phải</div>
-              <div id="rightCol"></div>
-            </div>
-          </div>
+          <div class="big">Từ đúng với "${a}" là?</div>
+          ${choices.map(c=>`<div class="choice" onclick="checkQuiz(this,'${c}','${b}')">${c}</div>`).join('')}
         </div>
       `;
-      const leftCol = document.getElementById('leftCol'); const rightCol = document.getElementById('rightCol');
-      left.forEach((t,idx)=>{
-        const el = document.createElement('div'); el.className='card'; el.style.margin='6px 0'; el.draggable=true; el.textContent=t; el.dataset.key=t; leftCol.appendChild(el);
-        el.ondragstart = (e)=>{ e.dataTransfer.setData('text/plain', t); }
-      });
-      right.forEach(t=>{
-        const el = document.createElement('div'); el.className='card'; el.style.margin='6px 0'; el.textContent=t; el.dataset.key=t; rightCol.appendChild(el);
-        el.ondragover = (e)=>e.preventDefault();
-        el.ondrop = (e)=>{
-          const from = e.dataTransfer.getData('text/plain');
-          const idxLeft = pairs.findIndex(p=>p[0]===from);
-          const correct = pairs[idxLeft][1]===t;
-          if(correct){ el.style.border='2px solid rgba(34,197,94,0.6)'; state.progress[idxLeft]=true; localStorage.setItem('progress_v1', JSON.stringify(state.progress)); updateProgress(); }
-          else{ el.style.border='2px solid rgba(248,113,113,0.45)'; }
-        }
-      });
+    }
+    function checkQuiz(el,c,b){
+      if(c===b){ el.classList.add('correct'); } else { el.classList.add('wrong'); }
+      document.querySelectorAll('.choice').forEach(ch=>ch.onclick=null);
     }
 
-    // LIST
     function renderList(){
-      const q = searchEl.value.trim().toLowerCase();
-      const rows = pairs.map((p,i)=>({i,a:p[0],b:p[1]})).filter(r=>!q||r.a.toLowerCase().includes(q)||r.b.toLowerCase().includes(q));
-      modeArea.innerHTML = `
-        <div class="card">
-          <div class="small">Danh sách (tìm: "${q}")</div>
-          <div style="margin-top:12px">
-            ${rows.map(r=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid rgba(255,255,255,0.02)"><div>${r.a}</div><div class="small">${r.b}</div></div>`).join('')}
-          </div>
-        </div>
-      `;
+      document.getElementById('app').innerHTML = pairs.map(([a,b])=>`<div class="card"><strong>${a}</strong> — ${b}</div>`).join('');
     }
 
-    // Utils
-    function shuffle(a){
-      for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
-      return a;
-    }
+    document.getElementById('flashBtn').onclick=()=>{mode='flash'; idx=0; render();};
+    document.getElementById('quizBtn').onclick=()=>{mode='quiz'; render();};
+    document.getElementById('listBtn').onclick=()=>{mode='list'; render();};
 
-    // Controls
-    document.getElementById('flashBtn').onclick = ()=>{ state.mode='flash'; render(); }
-    document.getElementById('quizBtn').onclick = ()=>{ state.mode='quiz'; render(); }
-    document.getElementById('matchBtn').onclick = ()=>{ state.mode='match'; render(); }
-    document.getElementById('listBtn').onclick = ()=>{ state.mode='list'; render(); }
-    document.getElementById('shuffleBtn').onclick = ()=>{ state.order = shuffle(state.order); state.idx=0; render(); }
-    document.getElementById('resetProgress').onclick = ()=>{ state.progress={}; localStorage.removeItem('progress_v1'); updateProgress(); }
-
-    searchEl.addEventListener('input', ()=>{ if(state.mode==='list') renderList(); });
-
-    // YouTube embed & controls
-    const ytWrap = document.getElementById('ytWrap');
-    let ytIframe = null; let muted=true; let playing=false;
-    function createIframe(){
-      ytWrap.innerHTML = '';
-      ytIframe = document.createElement('iframe');
-      ytIframe.width = '320'; ytIframe.height='180'; ytIframe.className='player';
-      ytIframe.src = ytUrl; ytIframe.allow = 'autoplay; encrypted-media; picture-in-picture'; ytWrap.appendChild(ytIframe);
-    }
-    createIframe();
-
-    const playBtn = document.getElementById('playBtn'); const muteBtn=document.getElementById('muteBtn');
-    playBtn.onclick = ()=>{
-      // recreate iframe to trigger autoplay (some browsers require user gesture)
-      createIframe();
-      playing = !playing; playBtn.textContent = playing? 'Tắt' : 'Bật/Tắt';
-    }
-    muteBtn.onclick = ()=>{
-      muted = !muted;
-      // reload iframe with mute param
-      const m = muted?1:0;
-      ytIframe.src = 'https://www.youtube.com/embed/HaIjR05n1Vc?rel=0&autoplay=1&controls=1&mute='+m;
-      muteBtn.textContent = muted? 'Bật tiếng' : 'Tắt tiếng';
-    }
-
-    // init
     render();
   </script>
 </body>
