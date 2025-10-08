@@ -3,119 +3,133 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Học 100 cặp từ dễ nhầm</title>
+  <title>Chương 1 — Hàm số lượng giác & Phương trình lượng giác</title>
   <style>
-    body { margin:0; font-family: sans-serif; background:#f7f9fc; color:#222; }
-    header { background:#06b6d4; color:#fff; padding:12px 16px; text-align:center; }
-    h1 { margin:0; font-size:20px; }
-    .container { padding:16px; max-width:800px; margin:0 auto; }
-    .controls { text-align:center; margin-bottom:16px; }
-    .controls button { margin:4px; padding:8px 12px; border:none; border-radius:6px; cursor:pointer; background:#06b6d4; color:#fff; }
-    .controls button.secondary { background:#ddd; color:#333; }
-    .card { background:#fff; border-radius:8px; padding:12px; margin-bottom:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    .big { font-size:20px; margin-bottom:8px; }
-    .small { font-size:14px; color:#555; }
-    iframe { width:100%; max-width:560px; height:315px; border:none; border-radius:8px; margin:12px auto; display:block; }
-    .choice { padding:8px; border:1px solid #ccc; border-radius:6px; margin:6px 0; cursor:pointer; }
-    .choice.correct { background:#d1fae5; border-color:#10b981; }
-    .choice.wrong { background:#fee2e2; border-color:#ef4444; }
+    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;color:#0f172a;background:#f8fafc;margin:0;padding:20px}
+    .container{max-width:980px;margin:0 auto}
+    header h1{font-size:28px;margin:0 0 6px}
+    section{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.06);padding:18px;margin-bottom:18px}
+    pre{background:#f1f5f9;padding:12px;border-radius:8px;overflow:auto}
+    code{background:#eef2ff;padding:2px 6px;border-radius:4px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+    .video iframe{width:100%;height:190px;border-radius:8px;border:0}
+    footer{color:#475569}
+    @media(min-width:900px){header h1{font-size:34px}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Học 100 cặp từ dễ nhầm</h1>
-    <div class="small">Có thể bật nhạc để vừa học vừa thư giãn</div>
-  </header>
-
   <div class="container">
-    <div style="text-align:center">
-      <iframe id="yt" src="https://www.youtube.com/embed/HaIjR05n1Vc?rel=0&autoplay=0&controls=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <header style="margin-bottom:14px">
+      <h1>Chương 1 — Hàm số lượng giác &amp; Phương trình lượng giác</h1>
+      <p style="color:#475569;margin:6px 0 0">Tổng hợp lý thuyết, công thức quan trọng, ví dụ có lời giải, và video hướng dẫn bấm máy Casio fx‑580VN X.</p>
+    </header>
 
-    <div class="controls">
-      <button id="flashBtn">Flashcard</button>
-      <button id="quizBtn">Quiz</button>
-      <button id="listBtn">Danh sách</button>
-    </div>
+    <section>
+      <h2>1. Các hàm cơ bản</h2>
+      <ul>
+        <li><strong>sin x</strong>: xác định trên <em>R</em>, chẵn/lẻ: lẻ, chu kỳ <code>2π</code>, giá trị trong <code>[-1,1]</code>.</li>
+        <li><strong>cos x</strong>: xác định trên <em>R</em>, chẵn, chu kỳ <code>2π</code>, giá trị trong <code>[-1,1]</code>.</li>
+        <li><strong>tan x</strong>: xác định khi x ≠ <code>π/2 + kπ</code>, lẻ, chu kỳ <code>π</code>.</li>
+        <li><strong>cot x</strong>: xác định khi x ≠ <code>kπ</code>, lẻ, chu kỳ <code>π</code>.</li>
+      </ul>
+    </section>
 
-    <div id="app"></div>
+    <section>
+      <h2>2. Công thức quan trọng</h2>
+      <div class="grid">
+        <div>
+          <h3>Công thức cộng / hiệu</h3>
+          <pre>sin(a±b)=sin a cos b ± cos a sin b
+cos(a±b)=cos a cos b ∓ sin a sin b
+tan(a±b)=(tan a ± tan b)/(1 ∓ tan a tan b)</pre>
+        </div>
+
+        <div>
+          <h3>Nhân đôi &amp; Hạ bậc</h3>
+          <pre>sin 2a = 2 sin a cos a
+cos 2a = cos^2 a − sin^2 a = 1 − 2 sin^2 a = 2 cos^2 a − 1
+sin^2 a = (1 − cos 2a)/2
+cos^2 a = (1 + cos 2a)/2</pre>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <h3>Tổng — hiệu thành tích</h3>
+        <pre>sin a + sin b = 2 sin((a+b)/2) cos((a−b)/2)
+cos a + cos b = 2 cos((a+b)/2) cos((a−b)/2)</pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Hàm dạng biến đổi và xác định tham số</h2>
+      <p>Hàm tổng quát: <code>y = a sin(bx + c) + d</code> hoặc <code>y = a cos(bx + c) + d</code></p>
+      <ul>
+        <li>Biên độ = <code>|a|</code></li>
+        <li>Chu kỳ = <code>2π / |b|</code></li>
+        <li>Dịch pha = <code>−c / b</code></li>
+        <li>Dịch dọc = <code>d</code></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Phương trình lượng giác thường gặp</h2>
+      <ol>
+        <li><code>sin x = a</code> → nghiệm: <code>x = (−1)^k arcsin a + kπ</code></li>
+        <li><code>cos x = a</code> → nghiệm: <code>x = ± arccos a + 2kπ</code></li>
+        <li><code>tan x = a</code> → nghiệm: <code>x = arctan a + kπ</code></li>
+        <li>Biến đổi <code>a sin x + b cos x = c</code> về dạng <code>R sin(x+φ)=c</code></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>5. Ví dụ mẫu — từng bước</h2>
+
+      <article>
+        <h3>Ví dụ A — Phương trình: <code>tan(2x − 15°) = 1</code></h3>
+        <p>Giải: Ta có <code>2x − 15° = 45° + k·180°</code> ⇒ <code>x = 30° + k·90°</code>.</p>
+      </article>
+
+      <article style="margin-top:10px">
+        <h3>Ví dụ B — Bài thực tế: Thủy triều</h3>
+        <p>Cho <code>h(t)=m + a cos(πt/12)</code>, max = 16, min = 10 ⇒ m = 13, a = 3. Giải <code>h(t)=11.5</code> ⇒ cos(...) = −1/2 ⇒ t = 8h, 16h.</p>
+      </article>
+
+      <article style="margin-top:10px">
+        <h3>Ví dụ C — Rút gọn:</h3>
+        <p>Rút gọn: <code>sin 70° + sin 50° = 2 sin 60° cos 10°</code>.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>6. Các đề thi hay gặp — gợi ý bấm máy</h2>
+      <p>Những dạng thường xuất hiện trong đề thi: giải phương trình, tìm số nghiệm trong khoảng, GTLN/GTNN, mô hình thực tế (dao động), rút gọn biểu thức.</p>
+      <ul>
+        <li>Dùng <code>solve()</code> hoặc <code>Solve</code> của Casio để tìm nghiệm xấp xỉ.</li>
+        <li>Nhớ chuyển máy sang <strong>Degree</strong> khi đề cho độ.</li>
+        <li>Sau khi tìm nghiệm trong 1 chu kỳ, nhân/chia thêm chu kỳ để lấy nghiệm tổng quát.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Video hướng dẫn bấm máy (Casio fx‑580VN X và tương tự)</h2>
+      <p>Dưới đây là các video hướng dẫn đã thu thập — mở và xem trực tiếp.</p>
+
+      <div class="videos">
+        <div class="video"><iframe src="https://www.youtube.com/embed/FEXL5Yj7VBU" title="Solve equations using Casio FX580vnx" allowfullscreen></iframe><p style="font-size:12px;color:#475569;margin:6px 0 0">Giải phương trình chung bằng SOLVE/CALC.</p></div>
+        <div class="video"><iframe src="https://www.youtube.com/embed/OMHWWnN9Y7w" title="Giải phương trình lượng giác bằng lệnh Solve trên Casio fx" allowfullscreen></iframe><p style="font-size:12px;color:#475569;margin:6px 0 0">Ví dụ giải phương trình lượng giác.</p></div>
+        <div class="video"><iframe src="https://www.youtube.com/embed/uv2_LA8LbCQ" title="Cách bấm máy tính lượng giác Toán 11" allowfullscreen></iframe><p style="font-size:12px;color:#475569;margin:6px 0 0">Đủ dạng bấm máy cho chương lượng giác.</p></div>
+        <div class="video"><iframe src="https://www.youtube.com/embed/lbgcmzo0gNI" title="Casio fx 580VN: Giải nhanh trắc nghiệm lượng giác" allowfullscreen></iframe><p style="font-size:12px;color:#475569;margin:6px 0 0">Thủ thuật làm trắc nghiệm.</p></div>
+        <div class="video"><iframe src="https://www.youtube.com/embed/b5w_OHe14Bw" title="Thủ thuật Casio: tìm số nghiệm" allowfullscreen></iframe><p style="font-size:12px;color:#475569;margin:6px 0 0">Tìm số nghiệm của phương trình lượng giác.</p></div>
+        <div class="video"><iframe src="https://www.youtube.com/embed/HlxiUCP_p5M" title="9 kĩ thuật bấm máy lượng giác" allowfullscreen></iframe><p style="font-size:12px;color:#475569;margin:6px 0 0">Kỹ thuật bấm máy nâng cao.</p></div>
+        <div class="video"><iframe src="https://www.youtube.com/embed/9mhPTmHcSgc" title="Bấm máy tính phương trình lượng giác" allowfullscreen></iframe><p style="font-size:12px;color:#475569;margin:6px 0 0">Ví dụ nhiều dạng.</p></div>
+        <div class="video"><iframe src="https://www.youtube.com/embed/-yvGS2hNv18" title="Tính tổng nghiệm lượng giác" allowfullscreen></iframe><p style="font-size:12px;color:#475569;margin:6px 0 0">Tính tổng các nghiệm bằng máy.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Muốn mình xuất bản thành file Markdown / PDF để bạn tải lên Notion không? Chỉ cần nói "Xuất PDF" hoặc "Xuất Markdown".</p>
+    </footer>
   </div>
-
-  <script>
-    const pairs = [
-      ['Chẩn đoán','Chuẩn đoán'],['Sát nhập','Sáp nhập'],['Thăm quan','Tham quan'],['Truyền thuyết','Truyện thuyết'],['Hòa nhập','Hội nhập'],
-      ['Bàng quang','Bàng quan'],['Xán lạn','Sáng lạng'],['Trăn trở','Trằn trọc'],['Lãng phí','Lãn phí'],['Lãnh đạm','Lảnh đạm'],
-      ['Trải nghiệm','Trãi nghiệm'],['Giữ','Giử'],['Kỷ niệm','Kỉ niệm'],['Cảm ơn','Cám ơn'],['Giành','Dành'],
-      ['Giả thiết','Giả thuyết'],['Lịch sự','Lễ phép'],['Hào hứng','Hứng khởi'],['Tinh vi','Tinh xảo'],['Xúc phạm','Lăng mạ'],
-      ['Chân thành','Thành thật'],['Kiên nhẫn','Nhẫn nại'],['Kiên quyết','Quyết liệt'],['Quản trị','Quản lý'],['Nguy cơ','Nguy hiểm'],
-      ['Mạo hiểm','Liều lĩnh'],['Cường điệu','Khoa trương'],['Công nghệ','Kỹ thuật'],['Kết quả','Hệ quả'],['Hậu quả','Tác hại'],
-      ['Hiệu quả','Kết quả'],['Lãng mạn','Lạn mạn'],['Nghiêm túc','Nghiêm trọng'],['Kinh ngạc','Ngạc nhiên'],['Trân trọng','Chân trọng'],
-      ['Cẩn thận','Cẩn trọng'],['Độc đáo','Đặc sắc'],['Chính xác','Chuẩn xác'],['Tự tin','Tự kiêu'],['Biểu hiện','Biểu hiện ra'],
-      ['Lãng quên','Quên lãng'],['Kỹ năng','Kĩ năng'],['Khát vọng','Mong muốn'],['Chính trị','Chánh trị'],['Khởi động','Khởi hành'],
-      ['Chung thủy','Trung thủy'],['Nghi ngờ','Ngờ vực'],['Kỹ lưỡng','Kĩ lưỡng'],['Mâu thuẫn','Mâu thuẩn'],['Hấp dẫn','Lôi cuốn'],
-      ['Khẳng định','Xác nhận'],['Sáng tạo','Sáng tác'],['Cầu kỳ','Cầu kì'],['Hoàn chỉnh','Hoàn thiện'],['Chính thức','Chánh thức'],
-      ['Linh hoạt','Uyển chuyển'],['Thực tế','Thực tiễn'],['Văn hóa','Văn hoá'],['Thuyết phục','Thuyết trình'],['Giới hạn','Hạn chế'],
-      ['Chính đáng','Chánh đáng'],['Khó khăn','Trở ngại'],['Cụ thể','Chi tiết'],['Thân thiện','Thân ái'],['Hoàn hảo','Hoàn mỹ'],
-      ['Truyền cảm','Cảm hứng'],['Ngẫu nhiên','Tình cờ'],['Bắt buộc','Cưỡng chế'],['Tập trung','Chú tâm'],['Đơn giản','Giản dị'],
-      ['Khác biệt','Sai khác'],['Đặc biệt','Đặc thù'],['Kỳ vọng','Hy vọng'],['Thích thú','Hứng thú'],['Hào phóng','Phóng khoáng'],
-      ['Chung kết','Trung kết'],['Khẩn trương','Khẩn cấp'],['Ngăn ngừa','Phòng tránh'],['Khôi hài','Hài hước'],['Chính tâm','Chánh tâm'],
-      ['Thành công','Thành đạt'],['Tận dụng','Lợi dụng'],['Tận tình','Hết lòng'],['Nghiêm khắc','Khắt khe'],['Đồng ý','Tán thành'],
-      ['Cố gắng','Nỗ lực'],['Thuyền trưởng','Thuyền trưởng (sai chính tả: thuyền trưỡng)'],['Đặc biệt','Đặc dị'],['Nguy hiểm','Hiểm nguy'],['Khó chịu','Bực bội'],
-      ['Lương thiện','Thiện lương'],['Chính xác','Xác thực'],['Khôn ngoan','Thông minh'],['Khéo léo','Tinh tế'],['Chân thật','Thật thà'],
-      ['Công bằng','Bình đẳng'],['Khả năng','Năng lực'],['Trách nhiệm','Nhiệm vụ'],['Cơ hội','Thời cơ'],['Niềm tin','Tín nhiệm']
-    ];
-
-    let mode = 'flash';
-    let idx = 0;
-
-    function render() {
-      if(mode==='flash') renderFlash();
-      else if(mode==='quiz') renderQuiz();
-      else if(mode==='list') renderList();
-    }
-
-    function renderFlash(){
-      const [a,b] = pairs[idx];
-      document.getElementById('app').innerHTML = `
-        <div class="card">
-          <div class="big">${a} — ${b}</div>
-          <div class="small">Flashcard ${idx+1} / ${pairs.length}</div>
-          <button onclick="nextFlash()" class="secondary">Tiếp</button>
-        </div>
-      `;
-    }
-    function nextFlash(){ idx=(idx+1)%pairs.length; render(); }
-
-    function renderQuiz(){
-      const i = Math.floor(Math.random()*pairs.length);
-      const [a,b] = pairs[i];
-      let choices = [b];
-      while(choices.length<4){
-        const r = pairs[Math.floor(Math.random()*pairs.length)][1];
-        if(!choices.includes(r)) choices.push(r);
-      }
-      choices = choices.sort(()=>Math.random()-0.5);
-      document.getElementById('app').innerHTML = `
-        <div class="card">
-          <div class="big">Từ đúng với "${a}" là?</div>
-          ${choices.map(c=>`<div class="choice" onclick="checkQuiz(this,'${c}','${b}')">${c}</div>`).join('')}
-        </div>
-      `;
-    }
-    function checkQuiz(el,c,b){
-      if(c===b){ el.classList.add('correct'); } else { el.classList.add('wrong'); }
-      document.querySelectorAll('.choice').forEach(ch=>ch.onclick=null);
-    }
-
-    function renderList(){
-      document.getElementById('app').innerHTML = pairs.map(([a,b])=>`<div class="card"><strong>${a}</strong> — ${b}</div>`).join('');
-    }
-
-    document.getElementById('flashBtn').onclick=()=>{mode='flash'; idx=0; render();};
-    document.getElementById('quizBtn').onclick=()=>{mode='quiz'; render();};
-    document.getElementById('listBtn').onclick=()=>{mode='list'; render();};
-
-    render();
-  </script>
 </body>
 </html>
